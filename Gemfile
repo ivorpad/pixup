@@ -36,10 +36,11 @@ group :development, :test do
   # RSpec for BDD/TDD
   gem 'rspec-rails', '~> 3.3', '>= 3.3.3'
   gem 'capybara', github: 'jnicklas/capybara', branch: 'master'
+  gem "launchy"
   gem 'awesome_print'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
-
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
 
   gem 'better_errors'
   gem 'binding_of_caller'

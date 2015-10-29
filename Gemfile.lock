@@ -48,6 +48,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.3)
     autoprefixer-rails (6.0.3)
       execjs
@@ -73,6 +74,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -102,6 +104,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -218,11 +222,13 @@ DEPENDENCIES
   byebug
   capybara!
   coffee-rails (~> 4.1.0)
+  database_cleaner (~> 1.5, >= 1.5.1)
   devise
   factory_girl_rails (~> 4.0)
   faker (~> 1.5.0)
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   pry-rails
   rails (= 4.2.2)
   rspec-rails (~> 3.3, >= 3.3.3)
