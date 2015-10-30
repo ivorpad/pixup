@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
       @user = build(:user)
     end
 
-    it "send email confirmation" do
+    it "sends email confirmation" do
       fill_in 'Name', with: @user.name
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
       fill_in "Name", with: @user.name
     end
 
-    it "is invalid without a name" do
+    it "doesn't allow name to be blank" do
       #DatabaseCleaner.clean
       user = build(:user, name: nil)
 
@@ -37,6 +37,18 @@ RSpec.describe User, type: :model do
       expect(page).to have_content('Name can\'t be blank')
     end
 
-  end
+    it "returns the name of the user" do
+      user = build(:user)
 
+      fill_in 'Name', with: user.name
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+
+      click_on 'Sign up'
+
+      expect(user.name).to eq("Admin Example")
+    end
+
+  end
 end
