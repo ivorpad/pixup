@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
       fill_in "Name", with: @user.name
     end
 
-    it "doesn't allow name to be blank" do
+    it "is invalid without a name" do
       #DatabaseCleaner.clean
       user = build(:user, name: nil)
 
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
 
       click_on 'Sign up'
 
-      expect(page).to have_content('Name can\'t be blank')
+      expect(user).to be_invalid
     end
 
     it "returns the name of the user" do
