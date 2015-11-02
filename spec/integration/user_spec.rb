@@ -24,7 +24,6 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid without a name" do
-      #DatabaseCleaner.clean
       user = build(:user, name: nil)
 
       fill_in 'Name', with: nil
