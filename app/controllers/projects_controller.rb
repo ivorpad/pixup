@@ -29,7 +29,15 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    #code
+    @project = Project.find(params[:id])
+
+    if @project.update_attributes(project_params)
+      flash[:notice] = "The project has been updated."
+      redirect_to @project
+    else
+      flash[:error] = "The project cannot be updated."
+      render @project
+    end
   end
 
   def destroy
