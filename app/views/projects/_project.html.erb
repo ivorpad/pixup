@@ -1,0 +1,4 @@
+<li>
+  <%= link_to project.title, project_path(project.id) %> <br>
+  <%= sanitize(truncate(project.description, length: 150)) %>
+</li>
