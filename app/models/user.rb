@@ -4,8 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :projects
-  has_many :assets
-
+  # Validations
   validates :name, presence: true
+
+  # Associations
+  has_many :collaborations
+  has_many :projects, through: :collaborations
+  has_many :created_projects, class_name: "Project"
+  has_many :assets
 end
