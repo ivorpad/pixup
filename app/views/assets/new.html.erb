@@ -1,2 +1,11 @@
-<h1>Assets#new</h1>
-<p>Find me in app/views/assets/new.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <h1>New Assets</h1>
+    <%= form_for @asset, :url => project_assets_path do |f| %>
+      <%= render "shared/errors", object: @asset %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+      <%= f.submit "Create Asset", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

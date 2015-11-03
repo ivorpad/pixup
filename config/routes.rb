@@ -1,21 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'assets/index'
-
-  get 'assets/new'
-
-  get 'assets/create'
-
-  get 'assets/show'
-
-  get 'assets/edit'
-
-  get 'assets/update'
-
-  get 'assets/destroy'
-
   devise_for :users
   root to: 'welcome#index'
 
-  resources :projects
+  # http://stackoverflow.com/questions/14731654/no-route-matches-action-show-controller-users
+  resources :projects do
+    resources :asset, controller: 'assets', as: :assets
+  end
 end
+
+# localhost.com/projects/:project_id/asset/:id

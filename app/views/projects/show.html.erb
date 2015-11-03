@@ -3,4 +3,4 @@
 <%= link_to "Edit Project", edit_project_path, class: "btn btn-primary" %>
 <p><%= @project.description %></p>
 
-<a href="#" class="btn btn-success">Create New Asset</a>
+<%= link_to "Create New Asset", new_project_asset_path(@project.id), class: "btn btn-success" %>
