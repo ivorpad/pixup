@@ -1,5 +1,6 @@
 class AssetsController < ApplicationController
   def index
+    @assets = Asset.all
   end
 
   def new
@@ -13,7 +14,8 @@ class AssetsController < ApplicationController
 
     if @asset.save
       flash[:notice] = "Created"
-      redirect_to project_assets_path
+      ## After creation, it is redirected to the project_path(:id)
+      redirect_to project_path(@project.id)
     else
       flash[:error] = "Could not be created"
       render 'new'
@@ -21,6 +23,7 @@ class AssetsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:project_id])
     @asset = Asset.find(params[:id])
   end
 

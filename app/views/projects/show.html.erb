@@ -3,4 +3,6 @@
 <%= link_to "Edit Project", edit_project_path, class: "btn btn-primary" %>
 <p><%= @project.description %></p>
 
+<%= render @project.assets %>
+
 <%= link_to "Create New Asset", new_project_asset_path(@project.id), class: "btn btn-success" %>
