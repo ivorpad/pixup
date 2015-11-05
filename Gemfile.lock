@@ -49,6 +49,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    annotate (2.6.10)
+      activerecord (>= 3.2, <= 4.3)
+      rake (~> 10.4)
     arel (6.0.3)
     autoprefixer-rails (6.0.3)
       execjs
@@ -223,6 +226,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.6, >= 2.6.10)
   awesome_print
   better_errors
   binding_of_caller

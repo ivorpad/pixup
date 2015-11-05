@@ -46,6 +46,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'faker', '~> 1.5.0'
+
+  gem 'annotate', '~> 2.6', '>= 2.6.10'
 end
 
 group :production do
