@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :text
+#  favorite    :boolean          default(FALSE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  private     :boolean          default(FALSE)
+#  user_id     :integer
+#
+
 class Project < ActiveRecord::Base
 
   # Validations
