@@ -1,8 +1,13 @@
 <h1><%= @project.title %></h1>
 <%= link_to "Delete Project", project_path, method: :delete, class: "btn btn-danger" %>
 <%= link_to "Edit Project", edit_project_path, class: "btn btn-primary" %>
+
+
+<%= link_to "Create New Category", new_project_category_path(@project.id), class: "btn btn-warning" %>
+
 <p><%= @project.description %></p>
 
-<%= render @project.assets %>
+<!--<%=render @project.assets %>-->
+<%= render @project.categories %>
 
 <%= link_to "Create New Asset", new_project_asset_path(@project.id), class: "btn btn-success" %>

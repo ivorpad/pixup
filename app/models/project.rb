@@ -19,12 +19,11 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
 
   # Associations
+  has_many :assets
   belongs_to :user
 
   has_many :collaborations
   has_many :users, through: :collaborations
-
-  has_many :assets
 
   has_many :categorizations
   has_many :categories, through: :categorizations
