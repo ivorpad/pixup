@@ -4,22 +4,23 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:project_id])
     @category =  Category.find(params[:id])
   end
 
   def new
+    @project = Project.find(params[:project_id])
     @category = Category.new
   end
 
   def create
-    project = Project.find(params[:project_id])
-    category = Category.new(category_params)
-    category = project.categorizations.create(category: category)
+    @project = Project.find(params[:project_id])
+    @category = Category.new(category_params)
+    @category = @project.categorizations.create(category: @category)
 
-    if category.save
+    if @category.save
       flash[:notice] = "Created"
-      byebug
-      redirect_to project_path(project.id)
+      redirect_to project_path(@project.id)
     else
       flash[:error] = "Could not be created"
       render 'new'
