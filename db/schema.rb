@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105211148) do
+ActiveRecord::Schema.define(version: 20151106223511) do
 
   create_table "assets", force: :cascade do |t|
     t.string   "title"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "category_id"
   end
 
   add_index "assets", ["project_id"], name: "index_assets_on_project_id"
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151105211148) do
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "asset_id"
   end
 
   add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id"

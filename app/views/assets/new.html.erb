@@ -5,6 +5,9 @@
       <%= render "shared/errors", object: @asset %>
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
+      <select class="form-control" name="" >
+        <option value="option">option</option>
+      </select>
       <%= f.submit "Create Asset", class: "btn btn-success" %>
     <% end %>
   </div>

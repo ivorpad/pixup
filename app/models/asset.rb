@@ -13,5 +13,7 @@
 class Asset < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
-  has_many :categories
+
+  has_many :categorizations
+  has_many :categories, through: :categorizations
 end

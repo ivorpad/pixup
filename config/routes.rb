@@ -12,3 +12,4 @@ Rails.application.routes.draw do
 end
 
 # localhost.com/projects/:project_id/asset/:id
+# localhost.com/images/my-project/cars/1/image.jpg
