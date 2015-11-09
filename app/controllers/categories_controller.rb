@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:project_id])
     @category = Category.find(params[:id])
   end
 
@@ -14,8 +15,10 @@ class CategoriesController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
+
     @category = Category.new(category_params)
     @category = @project.categorizations.create(category: @category)
+    @project.user_id = current_user.id
 
     if @category.save
       flash[:notice] = "Created"

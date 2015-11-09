@@ -8,14 +8,17 @@ class AssetsController < ApplicationController
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @category = Category.find(params[:category_id])
-    @asset = @category.assets.build(asset_params)
+    @asset = @category.assets.create(asset_params)
+
     @asset.user_id = current_user.id
+    @asset.project_id = @project.id
+    @asset.category_id = @category.id
 
     if @asset.save
       flash[:notice] = "Created"
-      ## After creation, it is redirected to the project_path(:id)
-      redirect_to category_path(@category.id)
+      redirect_to project_category_path(@project, @category)
     else
       flash[:error] = "Could not be created"
       render 'new'

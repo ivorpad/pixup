@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <h1>New Assets</h1>
-    <%= form_for @asset, :url => category_assets_path do |f| %>
+    <%= form_for @asset, :url => project_category_assets_path do |f| %>
       <%= render "shared/errors", object: @asset %>
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>

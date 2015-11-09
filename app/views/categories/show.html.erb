@@ -3,4 +3,6 @@
 
 <%= render @category.assets %>
 
-<%= link_to "Create New Asset", new_category_asset_path(@category), class: "btn btn-success" %>
+<%= link_to "Create New Asset", new_project_category_asset_path(@project, @category), class: "btn btn-success" %>
+<br>
+<b><%= @category.inspect %></b>
