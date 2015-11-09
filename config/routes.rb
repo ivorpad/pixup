@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   # http://stackoverflow.com/questions/14731654/no-route-matches-action-show-controller-users
   # TODO: Not sure about this approach
   resources :projects, shallow: true do
-    resources :category, controller: 'categories', as: :category
-    resources :asset, controller: 'assets', as: :assets
+    resources :category, controller: 'categories', as: :category do
+      resources :asset, controller: 'assets', as: :assets
+    end
+
   end
 end
 

@@ -2,3 +2,5 @@
 <p>Find me in app/views/categories/show.html.erb</p>
 
 <%= render @category.assets %>
+
+<%= link_to "Create New Asset", new_category_asset_path(@category), class: "btn btn-success" %>
