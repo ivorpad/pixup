@@ -23,7 +23,6 @@ class AssetsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:project_id])
     @asset = Asset.find(params[:id])
   end
 

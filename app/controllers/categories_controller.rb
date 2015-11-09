@@ -4,8 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:project_id])
-    @category =  Category.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def new
