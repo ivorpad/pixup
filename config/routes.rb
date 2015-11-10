@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
 
-  # http://stackoverflow.com/questions/14731654/no-route-matches-action-show-controller-users
-  # TODO: Not sure about this approach
   resources :projects do
     resources :category, controller: 'categories', as: :category do
         resources :asset, controller: 'assets', as: :assets, shallow: true
@@ -12,5 +10,12 @@ Rails.application.routes.draw do
   end
 end
 
-# localhost.com/projects/:project_id/asset/:id
-# localhost.com/my-project/images/cars/image.jpg
+# example.com/project/1/category/1
+# example.com/asset/1
+# example.com/project/1/asset/1/
+# BAD: example.com/project/1/category/1/asset/1/
+
+# OR example.com/my-project/images/cars/[:show]
+
+
+# example.com/project-name/category-name/asset-name/
