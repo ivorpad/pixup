@@ -11,12 +11,12 @@ class AssetsController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @category = Category.find(params[:category_id])
-    @asset = @category.assets.create(asset_params)
+    # @category = Category.find(params[:category_id])
+    @asset = @project.assets.create(asset_params)
 
     @asset.user_id = current_user.id
-    @asset.project_id = @project.id
-    @asset.category_id = @category.id
+    # @asset.project_id = @project.id
+    @asset.category_id = params[:category][:category_id]
 
     if @asset.save
       flash[:notice] = "Created"

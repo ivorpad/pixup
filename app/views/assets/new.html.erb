@@ -5,10 +5,10 @@
       <%= render "shared/errors", object: @asset %>
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
-      <select class="form-control" name="" >
-        <option value="option">option</option>
-      </select>
+      <%= select("category", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Category'}, class: 'form-control') %>
       <%= f.submit "Create Asset", class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
+
+<%= console %>

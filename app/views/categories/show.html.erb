@@ -1,6 +1,5 @@
-<h1>Assets Inside Categories</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h2> Category: <%= @category.name %> </h2>
 
 <%= render @category.assets %>
 
-<%= link_to "Create New Asset", new_project_category_asset_path(@project, @category), class: "btn btn-success" %>
+ <%= link_to "Create New Asset", new_project_category_asset_path(@project, @category), class: "btn btn-success" %>
