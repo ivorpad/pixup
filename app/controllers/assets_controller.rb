@@ -21,7 +21,7 @@ class AssetsController < ApplicationController
 
     if @asset.save
       flash[:notice] = "Created"
-      redirect_to project_category_path(@project, @category)
+      redirect_to [@project, @category, @asset]
     else
       flash[:error] = "Could not be created"
       render 'new'
