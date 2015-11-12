@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
     @project.user_id = current_user.id
 
     if @category.save
-      flash[:notice] = "Created #{@category.id}"
+      flash[:notice] = "Created"
       redirect_to project_path(@project.id)
     else
       flash[:error] = "Could not be created"
