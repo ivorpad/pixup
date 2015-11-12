@@ -1,19 +1,8 @@
-# == Schema Information
-#
-# Table name: assets
-#
-#  id         :integer          not null, primary key
-#  title      :string
-#  project_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :integer
-#
-
 class Asset < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :project
   belongs_to :user
-
-  has_many :categorizations
-  has_many :categories, through: :categorizations
+  belongs_to :category
 end

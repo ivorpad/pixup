@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def new
@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
     if @project.save
       flash[:notice] = "The project has been created."
-      redirect_to project_path(@project.id)
+      redirect_to project_path(@project)
     else
       flash[:error] = "The project could not be created, please try again."
       render 'new'
@@ -26,11 +26,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
 
     if @project.update_attributes(project_params)
       flash[:notice] = "The project has been updated."

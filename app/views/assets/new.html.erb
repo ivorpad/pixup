@@ -1,14 +1,23 @@
 <div class="row">
   <div class="col-md-4">
     <h1>New Assets</h1>
-    <%= form_for @asset, :url => project_category_assets_path do |f| %>
+    <%= form_for @asset, :url => project_assets_path do |f| %>
       <%= render "shared/errors", object: @asset %>
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
-      <%= select("category", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select Category'}, class: 'form-control') %>
-      <%= f.submit "Create Asset", class: "btn btn-success" %>
+        <div class="form-group collection-radio">
+          <%= f.collection_radio_buttons :category_id, @project.categories, :id, :name do |b| %>
+            <div class="row">
+              <%= b.label(class: 'radio_button') do %>
+                  <%= b.radio_button(class: "check_box") %>
+                  <%= b.object.name %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <div class="form-group">
+        <%= f.submit "Create Asset", class: "btn btn-success" %>
+      </div>
     <% end %>
   </div>
 </div>
-
-<%= console %>
