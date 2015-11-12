@@ -4,17 +4,20 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 # resources :projects, :path => '' in order to get example.com/:project_id
 
-  resources :projects, except: [:show] do
-    resources :category, controller: 'categories', as: :category, except: [:show, :index] do
-        resources :asset, controller: 'assets', as: :assets, only: [:show, :index]
+  resources :projects, except: [:show, :index] do
+    resources :category, controller: 'categories', as: :category, except: [:index], path: '' do
+        resources :asset, controller: 'assets', as: :assets, only: [:show, :new], path: ''
       end
   resources :asset, controller: 'assets', as: :assets, except: [:show, :index]
   end
 
-  match '/projects/:project_id', to: 'projects#show', :via => [:get]
-  match '/projects/:project_id/:category_id/:id', to: 'assets#show', :via => [:get]
-  match '/projects/:project_id/:category_id', to: 'categories#show', :via => [:get]
-  match '/projects/:project_id/:category_id/:asset_id', to: 'assets#show', :via => [:get]
+
+
+  get '/projects', to: 'projects#index'
+  get '/projects/:project_id', to: 'projects#show'
+  get '/projects/:project_id/:category_id/:id', to: 'assets#show'
+  get '/projects/:project_id/:category_id', to: 'categories#show'
+  get '/projects/:project_id/:category_id/:asset_id', to: 'assets#show'
 
 end
 

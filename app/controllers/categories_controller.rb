@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 
   def show
     @project = Project.friendly.find(params[:project_id])
-    @category = Category.friendly.find(params[:category_id])
+    @category = Category.friendly.find(params[:id])
   end
 
   def new
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
     @project.user_id = current_user.id
 
     if @category.save
-      flash[:notice] = "Created"
+      flash[:notice] = "Created #{@category.id}"
       redirect_to project_path(@project.id)
     else
       flash[:error] = "Could not be created"
