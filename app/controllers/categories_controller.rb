@@ -1,21 +1,21 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @categories = Categories.all
+    @categories = Category.all
   end
 
   def show
-    @project = Project.find(params[:project_id])
-    @category = Category.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
+    @category = Category.friendly.find(params[:category_id])
   end
 
   def new
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
     @category = Category.new
   end
 
   def create
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
 
     @category = Category.new(category_params)
     @category = @project.categorizations.create(category: @category)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106223511) do
+ActiveRecord::Schema.define(version: 20151112112834) do
 
   create_table "assets", force: :cascade do |t|
     t.string   "title"
@@ -20,16 +20,21 @@ ActiveRecord::Schema.define(version: 20151106223511) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "category_id"
+    t.string   "slug"
   end
 
   add_index "assets", ["project_id"], name: "index_assets_on_project_id"
+  add_index "assets", ["slug"], name: "index_assets_on_slug", unique: true
   add_index "assets", ["user_id"], name: "index_assets_on_user_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true
 
   create_table "categorizations", force: :cascade do |t|
     t.integer  "project_id"
@@ -52,6 +57,19 @@ ActiveRecord::Schema.define(version: 20151106223511) do
   add_index "collaborations", ["project_id"], name: "index_collaborations_on_project_id"
   add_index "collaborations", ["user_id"], name: "index_collaborations_on_user_id"
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -60,8 +78,10 @@ ActiveRecord::Schema.define(version: 20151106223511) do
     t.datetime "updated_at",                  null: false
     t.boolean  "private",     default: false
     t.integer  "user_id"
+    t.string   "slug"
   end
 
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "users", force: :cascade do |t|

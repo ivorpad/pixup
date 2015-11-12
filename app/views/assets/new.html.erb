@@ -6,7 +6,7 @@
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
         <div class="form-group collection-radio">
-          <%= f.collection_radio_buttons :category_ids, @project.categories, :id, :name do |b| %>
+          <%= f.collection_radio_buttons :category_id, @project.categories, :id, :name do |b| %>
             <div class="row">
               <%= b.label(class: 'radio_button') do %>
                   <%= b.radio_button(class: "check_box") %>

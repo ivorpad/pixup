@@ -7,16 +7,17 @@ class AssetsController < ApplicationController
 
   def new
     @asset = Asset.new
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def create
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
     @asset = @project.assets.create(asset_params)
     @asset.user_id = current_user.id
 
-    @category = Category.find(params[:asset][:category_ids])
-    @asset.category_id = params[:asset][:category_ids]
+    @category = Category.friendly.find(params[:asset][:category_id])
+    @asset.category_id = params[:asset][:category_id]
     @category.assets << @asset
 
     if @asset.save
@@ -29,7 +30,9 @@ class AssetsController < ApplicationController
   end
 
   def show
-    @asset = Asset.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
+    @category = @project.categories.friendly.find(params[:category_id])
+    @asset = @category.assets.friendly.find(params[:id])
   end
 
   def edit
