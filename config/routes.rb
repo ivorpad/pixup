@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-
   devise_for :users
   root to: 'welcome#index'
 
   resources :projects, except: [:show, :index] do
-    resources :category, controller: 'categories', as: :category, except: [:index], path: '' do
+    resources :category, controller: 'categories', as: :category, except: [:index, :new], path: '' do
         resources :asset, controller: 'assets', as: :assets, only: [:show, :new], path: ''
       end
   resources :asset, controller: 'assets', as: :assets, except: [:show, :index]
+  resources :category, controller: 'categories', as: :category, only: [:new]
   end
 
   get '/projects', to: 'projects#index'
