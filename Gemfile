@@ -15,11 +15,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'figaro', '1.0'
 gem 'gist'
 gem 'friendly_id', '~> 5.1'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'refile', require: 'refile/rails'
+gem 'refile-mini_magick'
+gem 'refile-s3', '~> 0.2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
