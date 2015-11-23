@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.friendly.find(params[:id])
-
+    
     if @project.update_attributes(project_params)
       flash[:notice] = "The project has been updated."
       redirect_to @project
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
 
     if @project.destroy
       flash[:notice] = "The project has been deleted."

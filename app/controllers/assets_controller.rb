@@ -8,7 +8,6 @@ class AssetsController < ApplicationController
   def new
     @asset = Asset.new
     @project = Project.friendly.find(params[:project_id])
-    @project = Project.friendly.find(params[:project_id])
   end
 
   def create
@@ -16,9 +15,13 @@ class AssetsController < ApplicationController
     @asset = @project.assets.create(asset_params)
     @asset.user_id = current_user.id
 
-    @category = Category.friendly.find(params[:asset][:category_id])
-    @asset.category_id = params[:asset][:category_id]
-    @category.assets << @asset
+    category_id = params[:asset][:category_id]
+
+    if category_id
+      @category = Category.friendly.find(params[:asset][:category_id])
+      @asset.category_id = params[:asset][:category_id]
+      @category.assets << @asset
+    end
 
     if @asset.save
       flash[:notice] = "Created"
