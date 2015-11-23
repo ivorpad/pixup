@@ -10,8 +10,12 @@ Rails.application.routes.draw do
     resources :asset, controller: 'assets', as: :assets, except: [:show, :index]
   end
 
-  get '/projects', to: 'projects#index'
-  get '/projects/:project_id', to: 'projects#show'
-  get '/projects/:project_id/:category_id/:id', to: 'assets#show'
-  get '/projects/:project_id/:category_id/:asset_id', to: 'assets#show'
+  scope path: '/projects', controller: :projects do
+    get '' => :index
+    get ':project_id' => :show
+  end
+
+  scope path: '/projects', controller: :assets do
+    get ':project_id/:category_id/:id' => :show
+  end
 end
