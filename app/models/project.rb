@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
+
   # Validations
-  validates :title, presence: true
-  validates :description, presence: true
+  validates_presence_of :title, :description
 
   # Associations
   has_many :assets, dependent: :destroy

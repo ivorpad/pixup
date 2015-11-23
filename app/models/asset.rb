@@ -3,8 +3,7 @@ class Asset < ActiveRecord::Base
   friendly_id :title, use: :slugged
   attachment :asset_file
 
-  validates :title, presence: true
-  validates :category, presence: true
+  validates_presence_of :title, :category
 
   belongs_to :project
   belongs_to :user
