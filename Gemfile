@@ -15,10 +15,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'figaro', '1.0'
 gem 'gist'
 gem 'friendly_id', '~> 5.1'
-gem 'refile', require: 'refile/rails'
-gem 'refile-mini_magick'
-gem 'refile-s3', '~> 0.2.0'
-
+gem 'carrierwave'
+gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

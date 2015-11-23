@@ -1,7 +1,9 @@
 class Asset < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
-  
+
+  mount_uploader :asset_file, AssetItemUploader
+
   validates_presence_of :title, :category
 
   belongs_to :project
