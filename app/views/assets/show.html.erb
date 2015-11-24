@@ -3,5 +3,8 @@
 <ul>
   <li><%= @asset.user_id %></li>
   <li> <%= @asset.title %> </li>
-  <li> <%= image_tag @asset.asset_file.url %> </li>
+  <% if @asset.asset_file? %>
+    <li> <%= image_tag @asset.asset_file.url %> </li>
+  <% end %>
+
 </ul>
