@@ -32,7 +32,7 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
+  version :thumb, :if => :image? do
     process :resize_to_fit => [50, 50]
   end
 
@@ -47,7 +47,7 @@ class AssetItemUploader < CarrierWave::Uploader::Base
       # %w(mp4 flv webm)
     # elsif category type is docs:
       # %w(pdf docx)
-      
+
     %w(jpg jpeg gif png pdf)
   end
 
@@ -57,4 +57,10 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+
+  protected
+
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
+  end
 end

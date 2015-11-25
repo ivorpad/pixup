@@ -4,23 +4,24 @@
     <%= form_for @asset, :url => project_assets_path do |f| %>
 
       <%= render "shared/errors", object: @asset %>
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
-        <div class="form-group collection-radio">
-          <%= f.collection_radio_buttons :category_id, @project.categories, :id, :name do |b| %>
-            <div class="row">
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+        <div class="form-group">
+          <%= f.collection_select :category_id, @project.categories, :id, :name, { :prompt => "Select Category" }, {:class=>'form-control'} do |b| %>
+            <!-- <div class="row">
               <%= b.label(class: 'radio_button') do %>
                   <%= b.radio_button(class: "check_box") %>
                   <%= b.object.name %>
               <% end %>
-            </div>
+            </div> -->
           <% end %>
 
           <div class="form-group">
             <%= f.label :asset_file %>
             <%= f.file_field :asset_file %>
           </div>
-
         </div>
 
       <div class="form-group">
