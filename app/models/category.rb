@@ -7,4 +7,6 @@ class Category < ActiveRecord::Base
   has_many :projects, through: :categorizations
   has_many :assets, source: 'asset', inverse_of: :category
 
+  def global
+  end
 end

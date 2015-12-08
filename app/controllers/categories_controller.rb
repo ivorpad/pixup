@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @categories = Category.all
   end
@@ -21,7 +22,7 @@ class CategoriesController < ApplicationController
 
       @category = @project.categorizations.create(category: @category)
       @project.user_id = current_user.id
-      
+
       flash[:notice] = "The category has been created"
       redirect_to project_path(@project.id)
     else
@@ -40,8 +41,6 @@ class CategoriesController < ApplicationController
   end
 
   private
-
-
 
   def category_params
     params.require(:category).permit(:name)
