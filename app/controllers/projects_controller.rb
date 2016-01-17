@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.friendly.find(params[:project_id])
+    @categories = Category.all
   end
 
   def new
@@ -31,7 +32,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.friendly.find(params[:id])
-    
+
     if @project.update_attributes(project_params)
       flash[:notice] = "The project has been updated."
       redirect_to @project

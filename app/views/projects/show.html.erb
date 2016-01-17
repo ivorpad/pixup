@@ -9,3 +9,9 @@
 <h3>Project Categories:</h3>
 
 <%= render @project.categories %>
+
+<ul>
+  <% @categories.global.each do |category| %>
+    <li> <%= link_to category.name, project_category_path(@project, category) %> </li>
+  <% end %>
+</ul>

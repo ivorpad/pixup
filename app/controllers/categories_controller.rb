@@ -19,7 +19,6 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-
       @category = @project.categorizations.create(category: @category)
       @project.user_id = current_user.id
 
@@ -43,6 +42,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :global)
   end
 end

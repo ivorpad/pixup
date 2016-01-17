@@ -1,3 +1,5 @@
 <ul>
-  <li><%= link_to category.name, project_category_path(@project, category) %></li>
+  <% if ! category.global %>
+    <li><%= link_to category.name, project_category_path(@project, category) %></li>
+  <% end %>
 </ul>
