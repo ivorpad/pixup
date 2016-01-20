@@ -14,4 +14,12 @@ class Project < ActiveRecord::Base
 
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
+
+
+  # Returns global and non-global categories
+  def visible_categories
+    global = Category.where(:global => true)
+    no_global = self.categories.where(:global => false)
+    global.concat(no_global).uniq.sort
+  end
 end

@@ -10,4 +10,4 @@
 
 <%= link_to "All", project_assets_path, class: "btn btn-primary" %>
 
-<%= render categories_for(@project) %>
+<%= render @project.visible_categories %>
