@@ -8,5 +8,4 @@ class Category < ActiveRecord::Base
   has_many :assets, source: 'asset', inverse_of: :category
 
   scope :global, -> { where( global: true ) }
-  # scope :categories_for, -> (project) { project ? joins(:categorization).where('categories.global' => true) : all }
 end

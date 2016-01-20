@@ -1,6 +1,8 @@
 class Asset < ActiveRecord::Base
+  include ApplicationHelper
   extend FriendlyId
   friendly_id :title, use: :slugged
+
 
   mount_uploader :asset_file, AssetItemUploader
 

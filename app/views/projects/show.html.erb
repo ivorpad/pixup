@@ -9,10 +9,5 @@
 <h3>Project Categories:</h3>
 
 <%= link_to "All", project_assets_path, class: "btn btn-primary" %>
-<%= render @project.categories %>
 
-<ul>
-  <% @categories.global.each do |category| %>
-    <li> <%= link_to category.name, project_category_path(@project, category) %> </li>
-  <% end %>
-</ul>
+<%= render all_categories(@project) %>
