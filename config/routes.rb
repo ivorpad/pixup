@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         resources :asset, controller: 'assets', as: :assets, only: [:show, :new], path: ''
     end
     resources :category, controller: 'categories', as: :category, only: [:new, :index, :show]
-    resources :asset, controller: 'assets', as: :assets, except: [:show, :index]
+    resources :asset, controller: 'assets', as: :assets, except: [:show]
   end
 
   scope path: '/projects', controller: :projects do
