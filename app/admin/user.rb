@@ -17,7 +17,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :admin, :label => "Super Administrator"
+      f.input :admin, :label => "Administrator"
     end
     f.button "Save"
   end
