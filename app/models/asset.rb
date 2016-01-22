@@ -1,5 +1,4 @@
 class Asset < ActiveRecord::Base
-  include ApplicationHelper
   extend FriendlyId
   friendly_id :title, use: :slugged
 
