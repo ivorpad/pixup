@@ -11,6 +11,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
+gem 'activeadmin', github: 'activeadmin'
+
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'figaro', '1.0'
 gem 'gist'
