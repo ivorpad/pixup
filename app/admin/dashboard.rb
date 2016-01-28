@@ -14,12 +14,12 @@ ActiveAdmin.register_page "Dashboard" do
     #
     columns do
       column do
-        panel "Recent Posts" do
-          # ul do
-          #   Post.recent(5).map do |post|
-          #     li link_to(post.title, admin_post_path(post))
-          #   end
-          # end
+        panel "Recent Projects" do
+          ul do
+            Project.limit(5).map do |project|
+              li link_to(project.title, admin_project_path(project))
+            end
+          end
         end
       end
 
