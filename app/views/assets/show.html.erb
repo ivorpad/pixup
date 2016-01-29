@@ -1,10 +1,19 @@
 <h2><%= @asset.title %></h2>
-
+<%= link_to "Delete", project_asset_path, method: :delete, class: "btn btn-danger" %>
 <ul>
-  <li><%= @asset.user_id %></li>
+  <li><%= @asset.user.name %></li>
   <li> <%= @asset.title %> </li>
   <% if @asset.asset_file? %>
     <li> <%= image_tag @asset.asset_file.url %> </li>
   <% end %>
-
 </ul>
+
+<ul>
+  <%# TODO: Pass local `asset` and move to a partial inside the comments folder %>
+  <% @asset.comments.each do |comment| %>
+    <small><%= comment.user.name %></small>
+    <li><%= comment.content %></li>
+  <% end %>
+</ul>
+
+<%= render partial: 'comments/form' %>
