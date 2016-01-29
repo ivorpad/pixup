@@ -34,9 +34,8 @@ class AssetsController < ApplicationController
 
   def show
     @project = Project.friendly.find(params[:project_id])
-    # TODO: Delete this line
-    #@category = @project.categories.friendly.find(params[:category_id])
     @asset = @project.assets.friendly.find(params[:id])
+    @comments = Comment.all
   end
 
   def edit

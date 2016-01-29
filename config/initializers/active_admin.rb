@@ -6,6 +6,13 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Pixup"
 
+  # == Comments
+  #
+  # Disable resources comments
+  #
+
+  config.comments = false
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #

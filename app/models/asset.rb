@@ -10,6 +10,8 @@ class Asset < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
+  has_many :comments, dependent: :destroy
+
   def self.assets_fetcher_for(project, category)
     Asset.where(:project_id => project.id, :category_id => category.id)
   end
