@@ -1,5 +1,5 @@
 <h2><%= @asset.title %></h2>
-
+<%= link_to "Delete", project_asset_path, method: :delete, class: "btn btn-danger" %>
 <ul>
   <li><%= @asset.user.name %></li>
   <li> <%= @asset.title %> </li>
