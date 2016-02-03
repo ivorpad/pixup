@@ -11,8 +11,9 @@
 <ul>
   <%# TODO: Pass local `asset` and move to a partial inside the comments folder %>
   <% @asset.comments.each do |comment| %>
-    <small><%= comment.user.name %></small>
+    <small><%= comment.user.name %> | <%= link_to "Delete", [@project, @asset, comment], method: :delete %></small>
     <li><%= comment.content %></li>
+
   <% end %>
 </ul>
 
