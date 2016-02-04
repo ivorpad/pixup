@@ -8,10 +8,13 @@
   <% end %>
 </ul>
 
-<ul class="list-comments">
-  <%= render @asset.comments %>
+<ul>
+  <%# TODO: Pass local `asset` and move to a partial inside the comments folder %>
+  <% @asset.comments.each do |comment| %>
+    <small><%= comment.user.name %> | <%= link_to "Delete", [@project, @asset, comment], method: :delete %></small>
+    <li><%= comment.content %></li>
+
+  <% end %>
 </ul>
 
-<div class="new-comment">
-  <%= render partial: 'comments/form', locals: { project: @project, asset: @asset, comment: @comment } %>
-</div>
+<%= render partial: 'comments/form' %>
