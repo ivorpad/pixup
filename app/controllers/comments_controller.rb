@@ -8,16 +8,21 @@ class CommentsController < ApplicationController
     @project = Project.friendly.find(params[:project_id])
     @asset = Asset.friendly.find(params[:asset_id])
     @comment = current_user.comments.create(comment_params)
+    @new_comment = Comment.new
     @comment.asset_id = @asset.id
-    if @comment.save
-      flash[:notice] = "The comment has been posted."
-      redirect_to project_asset_path(@project, @asset)
-    else
-      flash[:error] = "The comment could not be created, please try again."
-      render 'new'
-    end
-  end
 
+      if @comment.save
+        flash[:notice] = 'Comment created.'
+      else
+        flash[:error] = 'Comment cannot be created'
+      end
+
+      respond_to do |format|
+        format.html
+        format.js {}
+      end
+
+    end
   def destroy
     @project = Project.friendly.find(params[:project_id])
     @asset = Asset.friendly.find(params[:asset_id])
@@ -25,11 +30,15 @@ class CommentsController < ApplicationController
 
     if @comment.destroy
       flash[:notice] = 'Comment removed.'
-      redirect_to project_asset_path(@project, @asset)
     else
       flash[:error] = 'Comment cannot be removed'
-      redirect_to project_asset_path(@project, @asset)
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   private

@@ -1,8 +1,4 @@
-
-<%= params %>
-
-<%= Comment.all %>
-
-<p>
-  wdlfgkjnbfli
-</p>
+<%# TODO: Pass local `asset` and move to a partial inside the comments folder %>
+<li class="comment-<%= comment.id %>">
+  <small><%= comment.user.name %> | <%= link_to "Delete", [@project, @asset, comment], method: :delete, remote: true %></small> <br>
+  <%= comment.content %>

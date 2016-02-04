@@ -1,0 +1,6 @@
+
+<% if @comment.destroy %>
+  $(".comment-<%= @comment.id %>").hide();
+<% else %>
+  $(".comment-<%= @comment.id %>").prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
+<% end %>
