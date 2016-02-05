@@ -7,14 +7,13 @@ class Project < ActiveRecord::Base
 
   # Associations
   has_many :assets, dependent: :destroy
-  belongs_to :user
+  has_many :users
 
   has_many :collaborations
   has_many :users, through: :collaborations
 
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
-
 
   # Returns global and non-global categories
   def visible_categories
