@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
 
   # Associations
   has_many :assets, dependent: :destroy
-  has_many :users
+  belongs_to :user
 
   has_many :collaborations
   has_many :users, through: :collaborations
@@ -20,5 +20,9 @@ class Project < ActiveRecord::Base
     global = Category.where(:global => true)
     no_global = self.categories.where(:global => false)
     global.concat(no_global).uniq.sort
+  end
+
+  def collaborators
+    self.users.where.not(name: self.user.name)
   end
 end
