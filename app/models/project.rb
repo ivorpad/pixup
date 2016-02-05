@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
 
   # Associations
   has_many :assets, dependent: :destroy
-  belongs_to :user
+  has_many :users
 
   has_many :collaborations
   has_many :users, through: :collaborations
