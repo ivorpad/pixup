@@ -5,7 +5,9 @@ ActiveAdmin.register User do
     column :current_sign_in_at
     column :last_sign_in_at
     column :sign_in_count
-    column :role
+    column :role do |user|
+          user.roles.collect {|role| role.name.capitalize }.to_sentence
+    end
     column :email
     actions
   end
@@ -17,32 +19,21 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :role, as: :select, collection: User.roles.keys
+      f.input :roles, as: :check_boxes
     end
     f.button "Save"
   end
 
   controller do
-  def update
-    # get the currently logged in User's id
-    current_id = current_admin_user.id
-    # load the User being updated
-    @user = User.find(params[:id])
-    # update the User with new attributes
-    # if successful, this will sign out the User being updated
-    if @user.update_attributes(permitted_params[:user])
-      # if the updated User was the currently logged in User, sign them back in
-      if @user.id == current_id
-        sign_in(User.find(current_id), :bypass => true)
+    def update
+      if params[:user][:password].blank?
+        params[:user].delete "password"
+        params[:user].delete "password_confirmation"
       end
-      flash[:notice] = I18n.t('devise.passwords.updated_not_active')
-      redirect_to '/admin/users'
-    # display errors
-    else
-      render :action => :edit
+
+      super
     end
   end
-end
 
-  permit_params :user, :name, :password, :password_confirmation, :company, :email, :admin, :role
+  permit_params :user, :name, :password, :password_confirmation, :company, :email, :admin, role_ids: []
 end

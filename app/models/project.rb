@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
+  resourcify
   friendly_id :title, use: :slugged
 
   # Validations
