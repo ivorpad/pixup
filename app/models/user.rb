@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [:member, :admin]
+  enum role: [:member, :contributor, :admin]
   before_create :set_default_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   # Associations
-  belongs_to :role
   has_many :collaborations
   has_many :projects, through: :collaborations
   has_many :created_projects, class_name: "Project"
@@ -25,11 +24,15 @@ class User < ActiveRecord::Base
     role == "member"
   end
 
-  def set_default_role
-    self.role ||= :member
+  def contributor?
+    role == "contributor"
   end
 
   private
+
+  def set_default_role
+    self.role ||= :member
+  end
 
   def password_required?
     new_record? ? false : super

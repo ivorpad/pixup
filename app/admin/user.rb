@@ -5,7 +5,7 @@ ActiveAdmin.register User do
     column :current_sign_in_at
     column :last_sign_in_at
     column :sign_in_count
-    column :admin
+    column :role
     column :email
     actions
   end
@@ -17,7 +17,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :admin, :label => "Administrator"
+      f.input :role, as: :select, collection: User.roles.keys
     end
     f.button "Save"
   end
@@ -44,5 +44,5 @@ ActiveAdmin.register User do
   end
 end
 
-  permit_params :user, :name, :password, :password_confirmation, :company, :email, :admin
+  permit_params :user, :name, :password, :password_confirmation, :company, :email, :admin, :role
 end
