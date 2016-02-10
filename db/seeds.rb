@@ -1,3 +1,3 @@
-['admin', 'member', 'banned'].each do |role|
-  Role.find_or_create_by({ name: role })
-end
+user = User.create! :name => 'Ivor Padilla', :email => 'example@gmail.com', :password => '12345678', :password_confirmation => '12345678', :company => 'envato'
+
+puts "User #{user.name} created"

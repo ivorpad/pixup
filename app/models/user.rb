@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  after_create { |admin| admin.send_reset_password_instructions }
+  enum role: [:member, :admin]
   before_create :set_default_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,24 +10,23 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   # Associations
+  belongs_to :role
   has_many :collaborations
   has_many :projects, through: :collaborations
   has_many :created_projects, class_name: "Project"
   has_many :assets, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  belongs_to :role
-
   def admin?
-    self.role == "admin"
+    role == "admin"
   end
 
   def member?
-    self.role == "member"
+    role == "member"
   end
 
-  def banned?
-    self.role == "banned"
+  def set_default_role
+    self.role ||= :member
   end
 
   private
@@ -36,7 +35,4 @@ class User < ActiveRecord::Base
     new_record? ? false : super
   end
 
-  def set_default_role
-    self.role ||= Role.find_by_name('member')
-  end
 end
