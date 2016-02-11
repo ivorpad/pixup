@@ -51,22 +51,16 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<% if flash[:notice] %>
-   <div class="alert alert-success">
-     <button class="close" data-dismiss="alert" name="button" type="button">&times;</button>
-     <%= flash[:notice] %>
-   </div>
-   <% elsif flash[:error] %>
-   <div class="alert alert-danger">
-     <button class="close" data-dismiss="alert" name="button" type="button">&times;</button>
-     <%= flash[:error] %>
-   </div>
-   <% elsif flash[:alert] %>
-   <div class="alert alert-warning">
-     <button class="close" data-dismiss="alert" name="button" type="button">&times;</button>
-     <%= flash[:alert] %>
-   </div>
-   <% end %>
+
+
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name %>">
+    <button class="close" data-dismiss="alert">&#215</button>
+    <% if msg.is_a?(String) %>
+      <div id="flash_<%= name %>"> <%= sanitize(msg) %> </div>
+    <% end %>
+  </div>
+<% end %>
 
   <%= yield %>
 </div>
