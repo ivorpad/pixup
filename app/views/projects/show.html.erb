@@ -1,9 +1,6 @@
 <h1><%= @project.title %></h1>
-<% unless @project.user.name.nil? %>
 <small>Created by: <%= @project.user.name %> </small>
-<% end %>
 <br>
-
 <% unless @project.collaborators.empty? %>
   <small> Collaborators: <%= @project.collaborators.collect(&:name).join(", ") %> </small>
 <% end %>
