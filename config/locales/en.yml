@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  pundit:
+   default: 'You are not authorized to perform this action.'
+   post_policy:
+     destroy?: 'You cannot destroy this record.'
+     edit?: 'You cannot edit this record.'

@@ -6,6 +6,10 @@ class Project < ActiveRecord::Base
   # Validations
   validates_presence_of :title, :description
 
+  # Scope
+
+  scope :list_private, -> { where(private: true)  }
+
   # Associations
   has_many :assets, dependent: :destroy
   belongs_to :user
@@ -23,7 +27,8 @@ class Project < ActiveRecord::Base
     global.concat(no_global).uniq.sort
   end
 
+  # TODO: DRY
   def collaborators
-    self.users.where.not(name: self.user.name)
+     self.users.where.not(name: self.user.name)
   end
 end

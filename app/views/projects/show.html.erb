@@ -1,16 +1,31 @@
 <h1><%= @project.title %></h1>
+<% unless @project.user.name.nil? %>
 <small>Created by: <%= @project.user.name %> </small>
+<% end %>
 <br>
 
 <% unless @project.collaborators.empty? %>
   <small> Collaborators: <%= @project.collaborators.collect(&:name).join(", ") %> </small>
 <% end %>
 
+
 <div id="button-row">
-  <%= link_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
-  <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
+
+  <% if policy(@project).destroy? %>
+    <%= link_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+  <% end %>
+
+  <% if policy(@project).edit? %>
+    <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
+  <% end %>
+
   <%= link_to "Create New Category", new_project_category_path(@project), class: "btn btn-warning" %>
-  <%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
+
+
+  <% unless @project.categories.empty? %>
+    <%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
+  <% end %>
+
   <a href="#" class="btn btn-primary">Add a Collaborator</a>
 </div>
 

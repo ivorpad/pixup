@@ -3,6 +3,10 @@ class ProjectPolicy < ApplicationPolicy
     user.present?
   end
 
+  def show?
+    user.present?
+  end
+
   def edit?
     update?
   end
@@ -20,6 +24,16 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present? && user.is_admin?
+    user.present? && ( user.is_admin? || record.user == user )
+  end
+
+
+  class Scope < Scope
+
+    def resolve
+      return scope.all if user.has_role?(:admin) && user.present?
+      scope.where(user_id: user.id)
+    end
+
   end
 end
