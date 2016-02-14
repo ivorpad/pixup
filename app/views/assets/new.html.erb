@@ -1,30 +1,30 @@
 <div class="row">
-  <div class="col-md-4">
-    <h1>New Assets</h1>
-    <%= form_for @asset, :url => project_assets_path do |f| %>
+				<div class="col-md-4">
+								<h1>New Assets</h1>
+								<%= form_for @asset, :url => project_assets_path do |f| %>
 
-      <%= render "shared/errors", object: @asset %>
-      <div class="form-group">
-        <%= f.label :title %>
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-        <div class="form-group">
+								<%= render "shared/errors", object: @asset %>
+								<div class="form-group">
+												<%= f.label :title %>
+												<%= f.text_field :title, class: "form-control" %>
+								</div>
+								<div class="form-group">
 
-          <!-- if category_id then hidden field else show collection_select -->
-          <% if params[:category_id] %>
-            <%= f.hidden_field :category_id, :value => params[:category_id] %>
-          <% else %>
-            <%= f.collection_select :category_id, @project.visible_categories, :id, :name, { :prompt => "Select Category" }, {:class=>'form-control'} %>
-          <% end %>
+												<!-- if category_id then hidden field else show collection_select -->
+												<% if params[:category_id] %>
+												<%= f.hidden_field :category_id, :value => params[:category_id] %>
+								<% else %>
+												<%= f.collection_select :category_id, @project.visible_categories, :id, :name, { :prompt => "Select Category" }, {:class=>'form-control'} %>
+												<% end %>
 
-          <div class="form-group">
-            <%= f.label :asset_file %>
-            <%= f.file_field :asset_file %>
-          </div>
-        </div>
-      <div class="form-group">
-        <%= f.submit "Create Asset", class: "btn btn-success" %>
-      </div>
-    <% end %>
-  </div>
+												<div class="form-group">
+																<%= f.label :asset_file %>
+																<%= f.file_field :asset_file %>
+												</div>
+								</div>
+								<div class="form-group">
+												<%= f.submit "Create Asset", class: "btn btn-success" %>
+								</div>
+								<% end %>
+				</div>
 </div>

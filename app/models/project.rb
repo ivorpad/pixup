@@ -22,13 +22,12 @@ class Project < ActiveRecord::Base
 
   # Returns global and non-global categories
   def visible_categories
-    global = Category.where(:global => true)
-    no_global = self.categories.where(:global => false)
+    global = Category.where(global: true)
+    no_global = categories.where(global: false)
     global.concat(no_global).uniq.sort
   end
 
-  # TODO: DRY
   def collaborators
-     self.users.where.not(name: self.user.name)
+    users.where.not(name: user.name)
   end
 end
