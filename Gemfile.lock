@@ -182,8 +182,11 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+<<<<<<< HEAD
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+=======
+>>>>>>> feat/authorization
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -312,7 +315,6 @@ DEPENDENCIES
   mini_magick
   pg
   pry-rails
-  pundit
   rails (= 4.2.2)
   rails_12factor
   rolify (~> 5.0)
