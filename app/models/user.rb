@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  after_create { |admin| admin.send_reset_password_instructions }
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   # Associations
   has_many :collaborations
   has_many :projects, through: :collaborations
-  has_many :created_projects, class_name: "Project"
   has_many :assets, dependent: :destroy
   has_many :comments, dependent: :destroy
 

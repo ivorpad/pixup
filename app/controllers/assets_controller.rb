@@ -24,10 +24,10 @@ class AssetsController < ApplicationController
     end
 
     if @asset.save
-      flash[:notice] = "Created"
+      flash[:notice] = 'The asset has been created.'
       redirect_to [@project, @category, @asset]
     else
-      flash[:error] = "Could not be created"
+      flash[:error] = 'Please try again.'
       render 'new'
     end
   end
@@ -35,13 +35,22 @@ class AssetsController < ApplicationController
   def show
     @project = Project.friendly.find(params[:project_id])
     @asset = @project.assets.friendly.find(params[:id])
-    @comments = Comment.all
   end
 
   def edit
+    @asset = Asset.friendly.find(params[:id])
   end
 
   def update
+    @asset = Asset.friendly.find(params[:id])
+
+    if @asset.update_attributes(asset_params)
+      flash[:notice] = 'The asset has been updated.'
+      redirect_to project_asset_path
+    else
+      flash[:error] = 'The asset cannot be updated.'
+      render @asset
+    end
   end
 
   def destroy
@@ -51,15 +60,14 @@ class AssetsController < ApplicationController
       flash[:notice] = "\"#{@asset.title}\" was deleted successfully."
       redirect_to project_assets_path
     else
-      flash[:error] = "There was an error deleting the asset."
+      flash[:error] = 'There was an error deleting the asset.'
       render :show
     end
-
   end
 
   private
 
   def asset_params
-    params.require(:asset).permit(:title, :asset_file, :category_ids => [])
+    params.require(:asset).permit(:title, :asset_file, :remove_asset_file, category_ids: [])
   end
 end

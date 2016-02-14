@@ -1,2 +1,30 @@
-<h1>Assets#edit</h1>
-<p>Find me in app/views/assets/edit.html.erb</p>
+<div class="row">
+	<div class="col-md-4">
+		<h1>Edit asset</h1>
+		<%= form_for @asset, :url => project_asset_path do |f| %>
+		<%= render "shared/errors", object: @asset %>
+		<div class="form-group">
+			<%= f.label :title %>
+			<%= f.text_field :title, class: "form-control" %>
+		</div>
+
+			
+		<% if @asset.asset_file? %>
+			<%= image_tag @asset.asset_file.url %>
+			<div class="form-group">
+				<%= f.label :remove_asset %>
+				<%= f.check_box :remove_asset_file%>
+			</div>
+		<% else %>
+			<div class="form-group">
+				<%= f.label :asset_file %>
+				<%= f.file_field :asset_file %>
+			</div>
+			<% end %>
+
+		<div class="form-group">
+			<%= f.submit "Update", class: "btn btn-success" %>
+		</div>
+		<% end %>
+	</div>
+</div>
