@@ -65,23 +65,31 @@ class ProjectsController < ApplicationController
   end
 
   def add_member_to_project
+    # We find :project_id in the params
     @project = Project.friendly.find(params[:project_id])
-    @collaboration = Collaboration.new
-    @collaboration = @project.collaborations.build(project_params)
 
     if @project.update(project_params)
+
+      # Save :user_ids array in a variable for later use.
+      user_ids = params[:project][:ids]
+
+      # Loop in the user_ids params hash
+      user_ids.each do |user_id|
+      # build our collaboration association based in our loop
+        @project.collaborations.create(user_id: user_id)
+      end
+
        flash[:notice] = "created #{params}"
        redirect_to @project
     else
        flash[:danger] = "note created"
        render 'show'
     end
-
   end
 
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :favorite, :private, user_attributes: [:id])
+    params.require(:project).permit(:title, :description, :favorite, :private)
   end
 end
