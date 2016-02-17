@@ -1,12 +1,11 @@
 class ProjectsController < ApplicationController
-  # before_action :authenticate_user!
-
   def index
     # @projects = Project.all
     @projects = policy_scope(Project)
   end
 
   def show
+    @users = User.all
     @project = Project.friendly.find(params[:project_id])
     @categories = Category.all
      authorize @project
@@ -38,7 +37,7 @@ class ProjectsController < ApplicationController
     @project = Project.friendly.find(params[:id])
     authorize @project
     if @project.update_attributes(project_params)
-      flash[:notice] = "The project has been updated."
+      flash[:notice] = "The project has been updated. #{params}"
       redirect_to @project
     else
       flash[:error] = "The project cannot be updated."
@@ -58,9 +57,31 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def add_member
+    respond_to do |format|
+      format.html { render nothing: true }
+      format.js   { render nothing: true }
+    end
+  end
+
+  def add_member_to_project
+    @project = Project.friendly.find(params[:project_id])
+    @collaboration = Collaboration.new
+    @collaboration = @project.collaborations.build(project_params)
+
+    if @project.update(project_params)
+       flash[:notice] = "created #{params}"
+       redirect_to @project
+    else
+       flash[:danger] = "note created"
+       render 'show'
+    end
+
+  end
+
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :favorite, :private)
+    params.require(:project).permit(:title, :description, :favorite, :private, user_attributes: [:id])
   end
 end
