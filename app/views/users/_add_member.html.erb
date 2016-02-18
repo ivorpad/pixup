@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Add Members</h4>
       </div>
       <div class="modal-body">
-        <%= form_for @project do |f| %>
+        <%= form_for @project, :url => add_member_to_project_path  do |f| %>
             <%= f.collection_check_boxes(:user_ids, User.all, :id, :name) %>
       </div>
       <div class="modal-footer">

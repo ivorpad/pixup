@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   get "projects/:project_id/add_member" => "projects#add_member", :as => "add_member"
-  post "projects/:project_id/add_member_to_project" => "projects#add_member_to_project", :as => "add_member_to_project"
+  match "projects/:project_id/add_member_to_project" => "projects#add_member_to_project", :as => "add_member_to_project", :via => [:post, :patch]
 
   resources :projects, except: [:show, :index] do
     resources :category, controller: 'categories', as: :category do

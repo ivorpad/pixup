@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
     @project = Project.friendly.find(params[:id])
     authorize @project
     if @project.update_attributes(project_params)
-      flash[:notice] = "The project has been updated."
+      flash[:notice] = "The project has been updated. #{params}"
       redirect_to @project
     else
       flash[:error] = "The project cannot be updated."
@@ -64,14 +64,23 @@ class ProjectsController < ApplicationController
     end
   end
 
-def add_member_to_project
-  @project = Project.friendly.find(params[:project_id])
-  user_ids = params[:project][:user_ids]
-  user_ids.each do |user_id|
-      @project.collaborations.create(user_id: user_id)
-  end
-end
+  def add_member_to_project
+    @project = Project.friendly.find(params[:project_id])
 
+    if @project.update_attributes(project_params)
+      user_ids = params[:project][:user_ids]
+
+      user_ids.map do |user_id|
+        @project.collaborations.build(user_id: user_id)
+      end
+
+      flash[:notice] = "Member added"
+      redirect_to @project
+    else
+      flash[:danger] = "Member couldn't be added"
+      render 'show'
+    end
+  end
   private
 
   def project_params
