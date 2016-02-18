@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
     @project = Project.friendly.find(params[:id])
     authorize @project
     if @project.update_attributes(project_params)
-      flash[:notice] = "The project has been updated. #{params}"
+      flash[:notice] = "The project has been updated."
       redirect_to @project
     else
       flash[:error] = "The project cannot be updated."
@@ -68,21 +68,20 @@ class ProjectsController < ApplicationController
     # find :project_id in the params
     @project = Project.friendly.find(params[:project_id])
 
-    if @project.update(project_params)
+    if @project.update_attributes(project_params)
 
       # Save :user_ids array in a variable for later use.
       user_ids = params[:project][:user_ids]
+
       # Loop in the user_ids params hash
       user_ids.each do |user_id|
         # build our collaboration association based in our loop
-        @project.collaborations.create(user_id: user_id)
-
+      @project.collaborations.create(user_id: user_id)
       end
-
-       flash[:notice] = "created #{params}"
+       flash[:notice] = "Member added"
        redirect_to @project
     else
-       flash[:danger] = "note created"
+       flash[:danger] = "Member couldn't be added"
        render 'show'
     end
   end
