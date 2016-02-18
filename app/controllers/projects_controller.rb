@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
   end
 
   def add_member_to_project
+     # TODO: Give collaborators auth to edit projects_path.
     @project = Project.friendly.find(params[:project_id])
 
     if @project.update_attributes(project_params)
