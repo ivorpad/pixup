@@ -6,7 +6,12 @@ class ProjectsController < ApplicationController
 
   def show
     @users = User.all
+
     @project = Project.friendly.find(params[:project_id])
+
+    # Get all users except the Project creator.
+    @members = User.where.not(id: @project.user.id)
+
     @categories = Category.all
      authorize @project
   end
@@ -59,13 +64,12 @@ class ProjectsController < ApplicationController
 
   def add_member
     respond_to do |format|
-      format.html { #render nothing: true }
+      format.html {}
       format.js   { render nothing: true }
     end
   end
 
   def add_member_to_project
-     # TODO: Give collaborators auth to edit projects_path.
     @project = Project.friendly.find(params[:project_id])
 
     if @project.update_attributes(project_params)

@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <%= form_for @project, :url => add_member_to_project_path  do |f| %>
-            <%= f.collection_check_boxes(:user_ids, User.all, :id, :name) %>
+          <%= f.collection_check_boxes(:user_ids, @members, :id, :name) %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
