@@ -63,13 +63,14 @@ class ProjectsController < ApplicationController
   end
 
   def add_member
+    @project = Project.friendly.find(params[:project_id])
     respond_to do |format|
-      format.html {}
+      format.html { redirect_to project_path(@project), notice: "This URL cannot be accessed directly." }
       format.js   { render nothing: true }
     end
   end
 
-  def add_member_to_project
+  def add_member_to_project_path
     @project = Project.friendly.find(params[:project_id])
 
     if @project.update_attributes(project_params)

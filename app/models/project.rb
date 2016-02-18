@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
 
   # Scope
 
-  scope :list_private, -> { where(private: true)  }
+  # scope :is_private?, -> { where( private: true ) }
 
   # Associations
   has_many :assets, dependent: :destroy
