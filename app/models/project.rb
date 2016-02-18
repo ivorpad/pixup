@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
 
-  accepts_nested_attributes_for :users
+  # accepts_nested_attributes_for :users
 
   # Returns global and non-global categories
   def visible_categories
