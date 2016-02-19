@@ -29,11 +29,11 @@ class ProjectPolicy < ApplicationPolicy
 
 
   class Scope < Scope
-
     def resolve
-      return scope.all if user.has_role?(:admin) && user.present?
-      scope.where(user_id: user.id)
+      # Admin capabilities are handled through ActiveAdmin
+      # so this scope is no longer needed.
+          # return scope.all if user.has_role?(:admin) && user.present?
+      scope.joins(:users).where('collaborations.user_id = ? OR projects.user_id = ?', user, user)
     end
-
   end
 end

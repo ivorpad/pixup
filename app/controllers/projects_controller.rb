@@ -1,13 +1,16 @@
 class ProjectsController < ApplicationController
-  # before_action :authenticate_user!
-
   def index
     # @projects = Project.all
     @projects = policy_scope(Project)
   end
 
   def show
+    @users = User.all
+
     @project = Project.friendly.find(params[:project_id])
+
+    @members = User.where.not(id: @project.user.id)
+
     @categories = Category.all
      authorize @project
   end
@@ -58,9 +61,35 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def add_member
+    project = Project.friendly.find(params[:project_id])
+    respond_to do |format|
+      format.html { redirect_to project_path(project), notice: "This URL cannot be accessed directly." }
+      format.js   { render nothing: true }
+    end
+  end
+
+  def add_member_to_project
+    @project = Project.friendly.find(params[:project_id])
+
+    if @project.update_attributes(project_params)
+      user_ids = params[:project][:user_ids]
+
+      user_ids.map do |user_id|
+        @project.collaborations.build(user_id: user_id)
+      end
+
+      flash[:notice] = "Member added."
+      redirect_to @project
+    else
+      flash[:danger] = "Member couldn't be added"
+      render 'show'
+    end
+  end
+
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :favorite, :private)
+    params.require(:project).permit(:title, :description, :favorite, :private, :user_ids => [])
   end
 end

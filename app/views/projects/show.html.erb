@@ -11,20 +11,23 @@
 <% end %>
 
 <div id="button-row">
+	<% if policy(@project).destroy? %>
+	<%= link_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+	<% end %>
 
-				<% if policy(@project).destroy? %>
-				<%= link_to "Delete Project", project_path(@project), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
-				<% end %>
+	<% if policy(@project).edit? %>
+	<%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
+	<% end %>
 
-				<% if policy(@project).edit? %>
-				<%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
-				<% end %>
+	<%= link_to "Create New Category", new_project_category_path(@project), class: "btn btn-warning" %>
+	<%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
 
-				<%= link_to "Create New Category", new_project_category_path(@project), class: "btn btn-warning" %>
-				<%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
-				<a href="#" class="btn btn-primary">Add a Collaborator</a>
+
+		<%= link_to "Add Members", add_member_path, class: "btn btn-danger", :data => { toggle: "modal", target: "#myModal" }, remote: true %>
+		<%= render 'users/add_member' %>
 
 </div>
+
 
 <p><%= @project.description %></p>
 
