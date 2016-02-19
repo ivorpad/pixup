@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
 
     @project = Project.friendly.find(params[:project_id])
 
-    # Get all users except the Project creator.
     @members = User.where.not(id: @project.user.id)
 
     @categories = Category.all
@@ -63,14 +62,14 @@ class ProjectsController < ApplicationController
   end
 
   def add_member
-    @project = Project.friendly.find(params[:project_id])
+    project = Project.friendly.find(params[:project_id])
     respond_to do |format|
-      format.html { redirect_to project_path(@project), notice: "This URL cannot be accessed directly." }
+      format.html { redirect_to project_path(project), notice: "This URL cannot be accessed directly." }
       format.js   { render nothing: true }
     end
   end
 
-  def add_member_to_project_path
+  def add_member_to_project
     @project = Project.friendly.find(params[:project_id])
 
     if @project.update_attributes(project_params)

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :collaborations
   has_many :projects, through: :collaborations
+
   has_many :assets, dependent: :destroy
   has_many :comments, dependent: :destroy
 
