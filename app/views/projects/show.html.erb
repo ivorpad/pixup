@@ -23,10 +23,8 @@
 	<%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
 
 
-	<% unless @project.private %>
 		<%= link_to "Add Members", add_member_path, class: "btn btn-danger", :data => { toggle: "modal", target: "#myModal" }, remote: true %>
 		<%= render 'users/add_member' %>
-	<% end %>
 
 </div>
 
