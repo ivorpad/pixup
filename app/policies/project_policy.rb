@@ -4,7 +4,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present?
+    user.present? || record.is_public?
   end
 
   def edit?

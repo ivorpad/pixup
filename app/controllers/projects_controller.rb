@@ -6,13 +6,11 @@ class ProjectsController < ApplicationController
 
   def show
     @users = User.all
-
     @project = Project.friendly.find(params[:project_id])
-
     @members = User.where.not(id: @project.user.id)
-
     @categories = Category.all
-     authorize @project
+
+    authorize @project
   end
 
   def new
@@ -90,6 +88,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :favorite, :private, :user_ids => [])
+    params.require(:project).permit(:title, :description, :status, :user_ids => [])
   end
 end

@@ -2,6 +2,9 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   resourcify
 
+  # Unfortunately, Rails 4.2.2 still doesn't have a way to pass a prefix to enums
+  # This will be officially added in Rails 5.
+  enum status: { is_private: 0, is_public: 1, is_team: 2 }
 
   friendly_id :title, use: :slugged
 
@@ -9,8 +12,6 @@ class Project < ActiveRecord::Base
   validates_presence_of :title, :description
 
   # Scope
-
-  # scope :is_private?, -> { where( private: true ) }
 
   # Associations
   has_many :assets, dependent: :destroy
@@ -22,7 +23,6 @@ class Project < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
 
-  # accepts_nested_attributes_for :users
 
   # Returns global and non-global categories
   def visible_categories
