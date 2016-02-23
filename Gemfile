@@ -47,6 +47,7 @@ group :development, :test do
   gem 'faker', '~> 1.5.0'
 
   gem 'annotate', '~> 2.6', '>= 2.6.10'
+  gem "bullet"
 end
 
 group :production do
