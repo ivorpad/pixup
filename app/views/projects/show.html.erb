@@ -22,7 +22,7 @@
 	<%= link_to "Create New Category", new_project_category_path(@project), class: "btn btn-warning" %>
 	<%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
 
-			<% unless @users.count < 2 %>
+			<% if @users.count <= 2 %>
 
 				<%= link_to "Add Members", add_member_path, class: "btn btn-danger", :data => { toggle: "modal", target: "#myModal" }, remote: true %>
 				<%= render 'users/add_member' %>

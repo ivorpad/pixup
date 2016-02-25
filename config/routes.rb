@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :category, controller: 'categories', as: :category, only: [:new, :index, :show]
     resources :asset, controller: 'assets', as: :assets, except: [:show] do
+        resource :like, module: :assets
         resources :comments, only: [:create, :destroy]
     end
   end
