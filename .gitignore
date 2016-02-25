@@ -40,3 +40,4 @@ bower.json
 # Ignore file uploads
 /public/uploads
 /public/uploads/*
+Gemfile.lock

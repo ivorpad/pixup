@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218151909) do
+ActiveRecord::Schema.define(version: 20160220170335) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -104,9 +104,9 @@ ActiveRecord::Schema.define(version: 20160218151909) do
     t.boolean  "favorite",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.boolean  "private",     default: false
     t.integer  "user_id"
     t.string   "slug"
+    t.integer  "status",      default: 0
   end
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true

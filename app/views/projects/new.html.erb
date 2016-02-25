@@ -12,8 +12,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :private? %>
-        <%= f.check_box :private %>
+        <%= f.select :status, Project.statuses.keys.map { |status| [status.gsub(/is_/, "").capitalize, status] } %>
       </div>
 
       <div class="form-group">
