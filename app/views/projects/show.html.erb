@@ -19,8 +19,10 @@
 	<%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
 	<% end %>
 
-	<%= link_to "Create New Category", new_project_category_path(@project), class: "btn btn-warning" %>
-	<%= link_to "Add New Asset", new_project_asset_path(@project), class: "btn btn-success" %>
+	<%= link_to "Create Category", new_project_category_path(@project), class: "btn btn-warning" %>
+	<%= link_to "Create Asset", new_project_asset_path(@project), class: "btn btn-success" %>
+
+
 
 			<% if @users.count <= 2 %>
 
