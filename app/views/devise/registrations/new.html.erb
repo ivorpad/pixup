@@ -6,16 +6,13 @@
       <%= devise_error_messages! %>
 
       <div class="form-group">
-        <%= f.label :name %><br />
+        <%= f.label :full_name %><br />
         <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
       </div>
 
       <div class="form-group">
         <%= f.label :company %> <br>
-         <div class="input-group">
-           <%= f.text_field :company, class: 'form-control', placeholder: 'teamdomain' %>
-           <div class="input-group-addon">.pixup.com</div>
-         </div>
+        <%= f.text_field :company, class: 'form-control', placeholder: 'Company', class: 'form-control' %>
       </div>
 
       <div class="form-group">
