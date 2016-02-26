@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
 
   has_many :assets, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   def likes?(asset)
     asset.likes.where(user_id: id).any?
