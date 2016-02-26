@@ -31,9 +31,22 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+      @project = Project.friendly.find(params[:project_id])
+      @category = Category.friendly.find(params[:id])
   end
 
   def update
+    @category = Category.friendly.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
+
+    if @category.update_attributes(category_params)
+
+      flash[:notice] = "The category has been updated"
+      redirect_to project_category_path(@project.id, @category)
+    else
+      flash[:error] = "Could not be updated, please try again."
+      render 'edit'
+    end
   end
 
   def destroy

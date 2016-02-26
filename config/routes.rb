@@ -8,14 +8,17 @@ Rails.application.routes.draw do
         :as => "add_member_to_project", :via => [:post, :patch]
 
   resources :projects, except: [:show, :index] do
+  resources :category, controller: 'categories', as: :category, only: [:new, :index, :show, :edit]
+
     resources :category, controller: 'categories', as: :category do
         resources :asset, controller: 'assets', as: :assets, only: [:show, :new], path: ''
     end
-    resources :category, controller: 'categories', as: :category, only: [:new, :index, :show]
+
     resources :asset, controller: 'assets', as: :assets, except: [:show] do
         resource :like, module: :assets
         resources :comments, only: [:create, :destroy]
     end
+
   end
 
   scope path: '/projects', controller: :projects do

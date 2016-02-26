@@ -21,7 +21,7 @@ class Asset < ActiveRecord::Base
    [
      :title,
      [:title, :title_sequence]
-]
+  ]
   end
 
   def title_sequence

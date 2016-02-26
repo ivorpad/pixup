@@ -1,2 +1,18 @@
-<h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <h1>Edit Category</h1>
+
+    <%= form_for [@project, @category] do |f| %>
+      <%= render "shared/errors", object: @category %>
+      <div class="form-group">
+        <%= f.label :category_name, class: "control-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :global %>
+        <%= f.check_box :global %>
+      </div>
+      <%= f.submit "Create", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
