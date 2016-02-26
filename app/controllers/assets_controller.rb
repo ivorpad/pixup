@@ -68,6 +68,6 @@ class AssetsController < ApplicationController
   private
 
   def asset_params
-    params.require(:asset).permit(:title, :asset_file, :remove_asset_file, category_ids: [])
+    params.require(:asset).permit(:title, :asset_file, :remove_asset_file, :description, category_ids: [] )
   end
 end

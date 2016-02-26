@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225025355) do
+ActiveRecord::Schema.define(version: 20160226004430) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160225025355) do
     t.integer  "category_id"
     t.string   "slug"
     t.string   "asset_file"
+    t.text     "description"
   end
 
   add_index "assets", ["project_id"], name: "index_assets_on_project_id"
