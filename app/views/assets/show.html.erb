@@ -20,7 +20,7 @@
 
   <% elsif @asset.asset_application?  %>
     <iframe src=<%= @asset.asset_file.url %> width="600" height="780" style="border: none;"> </iframe>
-    <li> <%= link_to "Download PDF", @asset.asset_file.url %> </li>
+    <li> <%= link_to "Download", @asset.asset_file.url %> </li>
 
   <% elsif @asset.asset_video? %>
       <%= @asset.asset_file.url %>
