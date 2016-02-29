@@ -1,2 +1,24 @@
-<h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+<div class="row">
+<div class="col-md-6">
+  <h1>Edit Post</h1>
+
+  <%= form_for [@project, @post] do |f| %>
+  <%= render "shared/errors", object: @post %>
+
+  <div class="form-group">
+    <%= f.label :title%>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content%>
+    <%= f.text_area :content, class: 'form-control', rows: 20 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Update", class: 'btn btn-primary' %>
+  </div>
+
+  <% end %>
+</div>
+</div>

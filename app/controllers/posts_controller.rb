@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @posts = Post.all
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def show
@@ -26,6 +28,22 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @project = Project.friendly.find(params[:project_id])
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
+
+    if @post.update_attributes(post_params)
+      flash[:notice] = "Successfully updated..."
+      redirect_to [@project, @post]
+    else
+      render 'edit'
+    end
+
+
   end
 
   private
