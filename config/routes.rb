@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   ActiveAdmin.routes(self)
   devise_for :users
   root to: 'welcome#index'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
         :as => "add_member_to_project", :via => [:post, :patch]
 
   resources :projects, except: [:show, :index] do
+  resources :posts
   resources :category, controller: 'categories', as: :category, only: [:new, :index, :show, :edit]
 
     resources :category, controller: 'categories', as: :category do

@@ -40,7 +40,7 @@ class Asset < ActiveRecord::Base
   end
 
   def asset_image?
-    image = %r{^image\/(jpg|png|gif)}
+    image = %r{^image\/(jpg|png|gif|jpeg)}
     self.asset_file.file.content_type.match(image)
   end
 

@@ -16,7 +16,8 @@
 
 <% if @asset.asset_file? %>
   <% if @asset.asset_image? %>
-    <li><a href="<%= @asset.asset_file.full.url %>"><%= image_tag @asset.asset_file.preview.url %></a></li>
+
+    <%= link_to (image_tag @asset.asset_file.preview.url), @asset.asset_file.full.url %>
 
   <% elsif @asset.asset_application?  %>
     <iframe src=<%= @asset.asset_file.url %> width="600" height="780" style="border: none;"> </iframe>

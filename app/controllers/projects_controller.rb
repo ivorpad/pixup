@@ -18,6 +18,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.create(project_params)
+
+    # TODO: Refactor.  @project.user_id is not necessary as the id of the author is being inferred by
+    # current_user.projects.create
     @project.user_id = current_user.id
     authorize @project
     if @project.save
