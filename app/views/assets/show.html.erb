@@ -15,15 +15,15 @@
 
 
 <% if @asset.asset_file? %>
-  <% if @asset.asset_image? %>
+  <% if @asset.upload_mime_type? :image %>
 
     <%= link_to (image_tag @asset.asset_file.preview.url), @asset.asset_file.full.url %>
 
-  <% elsif @asset.asset_application?  %>
+  <% elsif @asset.upload_mime_type? :application  %>
     <iframe src=<%= @asset.asset_file.url %> width="600" height="780" style="border: none;"> </iframe>
     <li> <%= link_to "Download", @asset.asset_file.url %> </li>
 
-  <% elsif @asset.asset_video? %>
+  <% elsif @asset.upload_mime_type? :video %>
       <%= @asset.asset_file.url %>
 
    <% else %>

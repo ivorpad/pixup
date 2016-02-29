@@ -39,24 +39,16 @@ class Asset < ActiveRecord::Base
    title_changed?
   end
 
-  def asset_image?
-    image = %r{^image\/(jpg|png|gif|jpeg)}
-    self.asset_file.file.content_type.match(image)
+  def upload_mime_type?(type)
+    asset_hash = {
+                  image: %r{^image\/(jpg|png|gif|jpeg)},
+                  application: %r{^application\/(pdf)},
+                  video: %r{^video\/(quicktime|mpeg)},
+                  audio: %r{^audio\/(mpeg3|x-mpeg-3|mpeg|x-mpeg)}
+                }
+
+    self.asset_file.file.content_type.match(type)
   end
 
-  def asset_application?
-    application = %r{^application\/(pdf)}
-    self.asset_file.file.content_type.match(application)
-  end
-
-  def asset_video?
-    video = %r{^video\/(quicktime|mpeg)}
-    self.asset_file.file.content_type.match(video)
-  end
-
-  def asset_audio?
-    audio = %r{^audio\/(mpeg3|x-mpeg-3|mpeg|x-mpeg)}
-    self.asset_file.file.content_type.match(audio)
-  end
 
 end
