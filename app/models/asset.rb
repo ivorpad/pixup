@@ -47,7 +47,7 @@ class Asset < ActiveRecord::Base
                   audio: %r{^audio\/(mpeg3|x-mpeg-3|mpeg|x-mpeg)}
                 }
 
-    self.asset_file.file.content_type.match(type)
+    self.asset_file.file.content_type.match(asset_hash[type])
   end
 
 
