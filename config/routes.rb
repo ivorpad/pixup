@@ -5,20 +5,27 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   get "projects/:project_id/add_member" => "projects#add_member", :as => "add_member"
+
   match "projects/:project_id/add_member_to_project" => "projects#add_member_to_project",
-        :as => "add_member_to_project", :via => [:post, :patch]
+        :as => "add_member_to_project",
+        :via => [:post, :patch]
 
   resources :projects, except: [:show, :index] do
-  resources :posts
-  resources :category, controller: 'categories', as: :category, only: [:new, :index, :show, :edit]
 
-    resources :category, controller: 'categories', as: :category do
-        resources :asset, controller: 'assets', as: :assets, only: [:show, :new], path: ''
+
+    resources :posts do
+      resources :comments, module: :posts
     end
 
-    resources :asset, controller: 'assets', as: :assets, except: [:show] do
+    resources :categories, only: :edit
+
+    resources :categories do
+        resources :assets, only: [:show, :new], path: ''
+    end
+
+    resources :assets, except: [:show] do
+        resources :comments, module: :assets
         resource :like, module: :assets
-        resources :comments, only: [:create, :destroy]
     end
 
   end

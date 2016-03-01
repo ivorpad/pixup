@@ -16,6 +16,8 @@ class Asset < ActiveRecord::Base
 
 
   has_many :likes
+  has_many :comments, as: :commentable
+
 
   # Public Methods
 

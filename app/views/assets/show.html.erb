@@ -41,4 +41,7 @@
 <h3>Description</h3>
 <p><%= @asset.description %></p>
 
+<%= render partial: "comments/comments", locals: {commentable: @asset} %>
+<%= render partial: "comments/form", locals: {commentable: @asset} %>
+
 

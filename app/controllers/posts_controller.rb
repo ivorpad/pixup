@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def new
@@ -42,8 +43,6 @@ class PostsController < ApplicationController
     else
       render 'edit'
     end
-
-
   end
 
   private
