@@ -1,11 +1,13 @@
 class Category < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
+
   validates_presence_of :name
 
-  has_many :categorizations, dependent: :destroy
+  has_many :categorizations
   has_many :projects, through: :categorizations
-  has_many :assets, source: 'asset', inverse_of: :category
+
+  has_many :assets
 
   scope :global, -> { where( global: true ) }
 

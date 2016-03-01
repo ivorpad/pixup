@@ -20,8 +20,9 @@ class Project < ActiveRecord::Base
   has_many :collaborations
   has_many :users, through: :collaborations
 
-  has_many :categorizations, dependent: :destroy
+  has_many :categorizations
   has_many :categories, through: :categorizations
+
   has_many :posts
 
   # Returns global and non-global categories
