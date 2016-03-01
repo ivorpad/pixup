@@ -1,6 +1,0 @@
-<%# TODO: Pass local `asset` and move to a partial inside the comments folder %>
-<li class="comment-<%= comment.id %>">
-  <small><%= comment.user.name %>
-
- <%= link_to "Delete", [@project, @asset, comment], method: :delete, remote: true if current_user == comment.user || current_user.has_role?(:admin) %> </small> <br>
-  <%= comment.content %>

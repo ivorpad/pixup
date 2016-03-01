@@ -42,10 +42,3 @@
 <p><%= @asset.description %></p>
 
 
-<ul class="list-comments">
-  <%= render @asset.comments %>
-</ul>
-
-<div class="new-comment">
-  <%= render partial: 'comments/form', locals: { project: @project, asset: @asset, comment: @comment } %>
-</div>
