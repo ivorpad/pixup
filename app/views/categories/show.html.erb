@@ -1,7 +1,12 @@
 <h2> Category: <%= @category.name %> </h2>
 <h3>Assets:</h3>
-<%= link_to "Create Asset", new_project_asset_path(@project, category_id: @category.id), class: "btn btn-success" %>
+<%= link_to "Upload Asset", new_project_asset_path(@project, category_id: @category.id), class: "btn btn-success" %>
 
 <%= link_to "Edit Category", edit_project_category_path(@project, @category), class: 'btn btn-primary' if current_user.has_role? :admin  %>
 
-<%= render Asset.assets_fetcher_for(@project, @category) %>
+<%# render Asset.assets_fetcher_for(@project, @category) %>
+
+
+<%= render partial: "assets/assets" %>
+
+<%= console %>

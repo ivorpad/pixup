@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   resources :projects, except: [:show, :index] do
 
-
     resources :posts do
       resources :comments, module: :posts
     end

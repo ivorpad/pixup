@@ -22,7 +22,7 @@ class Asset < ActiveRecord::Base
   # Public Methods
 
   def self.assets_fetcher_for(project, category)
-    Asset.where(project_id: project.id, category_id: category.id)
+    self.where(project_id: project.id, category_id: category.id)
   end
 
   def slug_candidates

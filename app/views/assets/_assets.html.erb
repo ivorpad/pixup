@@ -1,0 +1,7 @@
+<ul>
+  <% @category.assets.each do |asset| %>
+    <li> <%= link_to asset.title, project_asset_path(@project, asset) %> </li>
+  <% end %>
+</ul>
+
+
