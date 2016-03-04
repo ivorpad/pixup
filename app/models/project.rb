@@ -11,7 +11,6 @@ class Project < ActiveRecord::Base
   # Validations
   validates_presence_of :title, :description
 
-  # Scope
 
   # Associations
   has_many :assets, dependent: :destroy

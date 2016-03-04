@@ -75,8 +75,8 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(project_params)
       user_ids = params[:project][:user_ids]
 
-      user_ids.map do |user_id|
-        @project.collaborations.build(user_id: user_id)
+      user_ids.map do |user|
+        @project.collaborations.build(user_id: user)
       end
 
       flash[:notice] = "Member added."

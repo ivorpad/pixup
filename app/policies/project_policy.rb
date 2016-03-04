@@ -4,7 +4,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? || record.is_public?
+    user.present? && (record.is_public? || user.collaborator_of?(record) || record.user == user)
   end
 
   def edit?
@@ -12,7 +12,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present? && (record.user == user || user.is_collaborator? || user.is_admin?)
+    user.present? && (record.user == user || user.is_admin?)
   end
 
   def create?
@@ -27,12 +27,8 @@ class ProjectPolicy < ApplicationPolicy
     user.present? && ( user.is_admin? || record.user == user )
   end
 
-
   class Scope < Scope
     def resolve
-      # Admin capabilities are handled through ActiveAdmin
-      # so this scope is no longer needed.
-          # return scope.all if user.has_role?(:admin) && user.present?
       scope.joins(:users).where('collaborations.user_id = ? OR projects.user_id = ?', user, user)
     end
   end

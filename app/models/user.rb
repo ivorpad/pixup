@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     asset.likes.where(user_id: id).any?
   end
 
+  def collaborator_of?(project)
+    project.collaborators.exists?(self.id)
+  end
+
   private
 
   def password_required?
