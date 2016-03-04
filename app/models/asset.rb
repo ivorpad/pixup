@@ -16,7 +16,7 @@ class Asset < ActiveRecord::Base
 
 
   has_many :likes
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
 
   # Public Methods

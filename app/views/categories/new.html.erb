@@ -2,7 +2,7 @@
   <div class="col-md-4">
     <h1>New Category</h1>
 
-    <%= form_for [@project, @category], :url => project_category_index_path do |f| %>
+    <%= form_for [@project, @category], :url => project_categories_path do |f| %>
       <%= render "shared/errors", object: @category %>
       <div class="form-group">
         <%= f.label :category_name, class: "control-label" %>
