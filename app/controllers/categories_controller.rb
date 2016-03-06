@@ -6,9 +6,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @asset = Asset.all
     @project = Project.friendly.find(params[:project_id])
     @category = Category.friendly.find(params[:id])
-    @asset = Asset.all
   end
 
   def new

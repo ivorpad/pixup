@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301150525) do
+ActiveRecord::Schema.define(version: 20160306130608) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -40,13 +40,14 @@ ActiveRecord::Schema.define(version: 20160301150525) do
   create_table "assets", force: :cascade do |t|
     t.string   "title"
     t.integer  "project_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.string   "slug"
     t.string   "asset_file"
     t.text     "description"
+    t.string   "content_type"
   end
 
   add_index "assets", ["project_id"], name: "index_assets_on_project_id"

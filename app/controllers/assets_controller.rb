@@ -5,6 +5,11 @@ class AssetsController < ApplicationController
     @project = Project.friendly.find(params[:project_id])
   end
 
+  def show
+    @project = Project.friendly.find(params[:project_id])
+    @asset = @project.assets.friendly.find(params[:id])
+  end
+
   def new
     @asset = Asset.new
     @project = Project.friendly.find(params[:project_id])
@@ -30,11 +35,6 @@ class AssetsController < ApplicationController
       flash[:error] = 'Please try again.'
       render 'new'
     end
-  end
-
-  def show
-    @project = Project.friendly.find(params[:project_id])
-    @asset = @project.assets.friendly.find(params[:id])
   end
 
   def edit
@@ -68,6 +68,6 @@ class AssetsController < ApplicationController
   private
 
   def asset_params
-    params.require(:asset).permit(:title, :asset_file, :remove_asset_file, :description, category_ids: [] )
+    params.require(:asset).permit(:title, :asset_file, :remove_asset_file, :description, :tag_list, category_ids: [] )
   end
 end

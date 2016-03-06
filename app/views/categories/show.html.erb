@@ -5,4 +5,3 @@
 <%= link_to "Edit Category", edit_project_category_path(@project, @category), class: 'btn btn-primary' if current_user.has_role? :admin  %>
 
 <%= render partial: "assets/assets" %>
-

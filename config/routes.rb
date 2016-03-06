@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   get "projects/:project_id/add_member" => "projects#add_member", :as => "add_member"
-
   match "projects/:project_id/add_member_to_project" => "projects#add_member_to_project",
         :as => "add_member_to_project",
         :via => [:post, :patch]
+
+  get "projects/:project_id/categories/:categories_id/:type" => "assets/file_types#show"
 
   resources :projects, except: [:show, :index] do
 
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
     resources :categories, only: :edit
 
     resources :categories do
-        resources :assets, only: [:show, :new], path: ''
+        resources :assets
     end
 
     resources :assets, except: [:show] do

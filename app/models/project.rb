@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
 
 
   # Associations
-  has_many :assets, dependent: :destroy, dependent: :destroy
+  has_many :assets, dependent: :destroy
   belongs_to :user
 
   has_many :collaborations

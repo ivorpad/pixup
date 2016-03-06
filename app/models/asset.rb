@@ -4,7 +4,7 @@ class Asset < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
   mount_uploader :asset_file, AssetItemUploader
-
+  before_save :update_asset_attributes
 
   # Validations
   validates_presence_of :title, :category
@@ -18,6 +18,9 @@ class Asset < ActiveRecord::Base
   has_many :likes
   has_many :comments, as: :commentable, dependent: :destroy
 
+
+  scope :images, -> { where(content_type: 'image') }
+  scope :videos, -> { where(content_type: 'video') }
 
   # Public Methods
 
@@ -37,16 +40,11 @@ class Asset < ActiveRecord::Base
    title_changed?
   end
 
-  def upload_mime_type?(type)
-    asset_hash = {
-                  image: %r{^image\/(jpg|png|gif|jpeg)},
-                  application: %r{^application\/(pdf)},
-                  video: %r{^video\/(quicktime|mpeg)},
-                  audio: %r{^audio\/(mpeg3|x-mpeg-3|mpeg|x-mpeg)}
-                }
+  private
 
-    self.asset_file.file.content_type.match(asset_hash[type])
+  def update_asset_attributes
+    if asset_file.present? && asset_file_changed?
+      self.content_type = asset_file.file.content_type.split("/").first
+    end
   end
-
-
 end
