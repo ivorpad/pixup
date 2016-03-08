@@ -1,11 +1,12 @@
-<h2><%= @asset.title %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><%= @asset.title %></h2>
 <%= link_to "Delete", project_asset_path, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
 <%= link_to "Edit", edit_project_asset_path, class: "btn btn-primary" %>
 
-<div class="likes" id="likes">
-
-    <%= render partial: "likes" %>
-
+<div class="likes-<%= @asset.id %>">
+    <%= render partial: "likes", locals: { asset: @asset } %>
 </div>
 
 <ul>
@@ -38,10 +39,13 @@
 <!-- <p> <%# number_to_human_size(@asset.asset_file.file.size) %> </p> -->
 
 
-<h3>Description</h3>
-<p><%= @asset.description %></p>
+  <h3>Description</h3>
+  <p><%= @asset.description %></p>
 
-<%= render partial: "comments/comments", locals: {commentable: @asset} %>
-<%= render partial: "comments/form", locals: {commentable: @asset} %>
+  <%= render partial: "comments/comments", locals: {commentable: @asset} %>
+  <%= render partial: "comments/form", locals: {commentable: @asset} %>
 
 
+    </div>
+  </div>
+</div>

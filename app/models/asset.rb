@@ -19,8 +19,9 @@ class Asset < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
 
 
-  scope :images, -> { where(content_type: 'image') }
-  scope :videos, -> { where(content_type: 'video') }
+  scope :image, -> { where(content_type: 'image') }
+  scope :video, -> { where(content_type: 'video') }
+  scope :audio, -> { where(content_type: 'audio') }
 
   # Public Methods
 

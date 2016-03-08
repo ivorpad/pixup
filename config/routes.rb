@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         :as => "add_member_to_project",
         :via => [:post, :patch]
 
-  get "projects/:project_id/categories/:categories_id/:type" => "assets/file_types#show"
+  get "projects/:project_id/categories/:categories_id/:type" => "assets/file_types#show", :as => "assets_content_type"
 
   resources :projects, except: [:show, :index] do
 

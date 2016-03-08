@@ -6,9 +6,10 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @asset = Asset.all
+    @assets = Asset.all
     @project = Project.friendly.find(params[:project_id])
     @category = Category.friendly.find(params[:id])
+    @assets_content_type = Asset.pluck(:content_type).uniq
   end
 
   def new

@@ -1,7 +1,21 @@
-<ul>
+<div class="asset-posts-container">
   <% @category.assets.each do |asset| %>
-    <li> <%= link_to asset.title, project_asset_path(@project, asset) %> </li>
+    <div class="col-md-3 asset-post">  
+      <%= link_to (image_tag asset.asset_file.thumb.url), project_asset_path(@project, asset), class: 'asset-thumbnail'  %>
+      <h4><%= link_to asset.title, project_asset_path(@project, asset) %></h4>
+      <p> <%= asset.description %> </p>
+
+      <div class="asset-meta-info">
+        <small><%= asset.user.name %></small>
+        <div class="likes-<%= asset.id %>">
+          <%= render partial: "assets/likes", locals: { asset: asset } %>
+        </div>
+        <small> <%= pluralize asset.comments.count, "Comment" %></small>
+      </div>
+
+    </div>
   <% end %>
-</ul>
+</div>
+
 
 

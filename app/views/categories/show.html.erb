@@ -1,7 +1,46 @@
-<h2> Category: <%= @category.name %> </h2>
-<h3>Assets:</h3>
-<%= link_to "Upload Asset", new_project_asset_path(@project, category_id: @category.id), class: "btn btn-success" %>
+<div class="navbar navbar-default secondary-navigation">
+  <div class="container">
 
-<%= link_to "Edit Category", edit_project_category_path(@project, @category), class: 'btn btn-primary' if current_user.has_role? :admin  %>
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#secondary-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
 
-<%= render partial: "assets/assets" %>
+   <div class="collapse navbar-collapse" id="secondary-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">All</a></li>
+        <% @assets_content_type.each do |type| %>
+          <li><%= link_to type, assets_content_type_path(@project, @category, type)  %></li>
+        <% end %>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Create Note</a></li>
+       <li><%= link_to "Upload Asset", new_project_asset_path(@project, category_id: @category.id)  %></li>
+      </ul>
+   </div> <!-- /#secondary-navbar-collapse-1 -->
+      
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4> Category: <%= @category.name %> </h4>
+      <h3>Assets:</h3>
+
+      <%= link_to "Edit Category", edit_project_category_path(@project, @category), class: 'btn btn-primary' if current_user.has_role? :admin  %>
+    </div>
+  </div>
+
+  <%= render partial: "assets/assets" %>
+</div>
+
+
+
+
+

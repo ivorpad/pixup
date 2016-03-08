@@ -1,8 +1,15 @@
-<h1>Projects</h1>
-<%= link_to "New Project", new_project_path, class: "btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>Projects</h1>
+      <%= link_to "New Project", new_project_path, class: "btn btn-primary" %>
 
-<% if @projects.any? %>
+      <% if @projects.any? %>
       <%= render @projects %>
-    <% else %>
+      <% else %>
       <p> There's nothing here, go a head and create a new project. </p>
-  <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

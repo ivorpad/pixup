@@ -49,7 +49,7 @@ class AssetsController < ApplicationController
       redirect_to project_asset_path
     else
       flash[:error] = 'The asset cannot be updated.'
-      render @asset
+      render 'edit'
     end
   end
 
