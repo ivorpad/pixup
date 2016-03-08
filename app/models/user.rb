@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  mount_uploader :avatar, AvatarUploader
 
   after_create :assign_default_role
   # Include default devise modules. Others available are:
