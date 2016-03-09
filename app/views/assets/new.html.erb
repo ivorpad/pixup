@@ -22,7 +22,7 @@
 			<%= f.hidden_field :category_id, :value => params[:category_id] %>
 		<% else %>
 			<%= f.label :select_category %>
-			<%= f.collection_select :category_id, @project.visible_categories, :id, :name, { :prompt => "" }, {:class=>'form-control'} %>
+			<%= f.collection_select :category_id, @project.visible_categories, :id, :name, { :prompt => "Select a category" }, {:class=>'form-control'} %>
 		<% end %>
 	</div>
 

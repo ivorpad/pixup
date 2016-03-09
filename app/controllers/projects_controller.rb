@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   def index
     @projects = policy_scope(Project)
+    authorize @projects
   end
 
   def show
@@ -14,12 +15,14 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+
+    authorize @project
   end
 
   def create
     @project = current_user.projects.create(project_params)
-
     @project.user_id = current_user.id
+
     authorize @project
     if @project.save
       flash[:notice] = "The project has been created."

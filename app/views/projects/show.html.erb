@@ -23,7 +23,7 @@
 				<%= link_to "Create Post", new_project_post_path(@project), class: "btn btn-primary" %>
 				<%= link_to "All Posts", project_posts_path, class: 'btn btn-success' %>
 
-				<%= link_to "Add Members", add_member_path, class: "btn btn-warning", :data => { toggle: "modal", target: "#add_member" }, remote: true %>
+				<%= link_to "Add Members", add_member_path, class: "btn btn-warning", :data => { toggle: "modal", target: "#add_member" }, remote: true unless @project.is_public? %>
 				<%= render 'users/add_member' %>
 
 				<% if policy(@project).destroy? %>

@@ -21,10 +21,10 @@
 $dark-primary: #182433;
 $primary-color: #2196F3;
 $light-primary-color: #C5D8F0;
+$light-secondary-color: #8BC34A;
 $primary--border-radius: 5px;
 $primary--link-color: #212121;
 $primary--paragraph-color: #727272;
-
 
 body {
   background: #F5F7F9;
@@ -35,9 +35,10 @@ h4 {
   a {
     color: $primary--link-color;
     margin-top: 15px;
-     &:hover {
+
+    &:hover {
       color: $primary--link-color;
-     }
+    }
   }
 }
 
@@ -61,8 +62,10 @@ p {
 
 .navbar {
   border-radius: 0px;
-  margin: -1px -1px auto -1px;
-  &.navigation{
+  margin-bottom: 0;
+  border: none;
+
+  &.navigation {
     border-bottom: none;
     background: $dark-primary;
     padding-bottom: 25px;
@@ -70,14 +73,13 @@ p {
 }
 
 ul {
-    &.nav {
-      &.navbar-nav
-        {
-          &.main-navigation {
-            margin-top: 20px;
-          }
-        }
+  &.nav {
+    &.navbar-nav {
+      &.main-navigation {
+        margin-top: 20px;
+      }
     }
+  }
 }
 
 .brand-navbar {
@@ -88,41 +90,52 @@ ul {
   background: $primary-color;
   border-top: none;
   padding: 4.5px 0;
-  
-      .navbar-nav {
-         li {
-            a {
-              color: $light-primary-color;
-              font-size: 12px;
-              letter-spacing: 0.5px;
-              text-shadow: 0px 1px 1px rgba(0,30,50,0.10);
-              font-weight: bold;
-              text-transform: uppercase;
-              padding:0;
-              margin: 15px 30px;
-                &:first-child {
-                  margin-left: 0;
-                }
-               &:hover {
-                 color: lighten($light-primary-color, 5%);
 
-               }
-            }
+  .navbar-nav {
+    li {
+      a {
+        color: $light-primary-color;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        text-shadow: 0px 1px 1px rgba(0, 30, 50, 0.1);
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0;
+        margin: 15px 30px 10px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:hover {
+          color: lighten($light-primary-color, 5%);
+        }
       }
-   
-  }
+    }
 
+    .btn--asset-upload {
+      background: $light-secondary-color;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 100px;
+      margin-top: 10px;
+      padding: 5px 10px;
+      color: white;
+
+      &:hover {
+        background: lighten($light-secondary-color, 5%);
+      }
+    }
+  }
 }
 
 .asset-posts-container {
   margin-top: 30px;
 }
 
-
 .asset-post {
   /* Mask: */
   background: white;
-  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.05);
   border-radius: $primary--border-radius;
   width: 258px;
   margin-right: 15px;
@@ -130,22 +143,20 @@ ul {
   margin-bottom: 30px;
   padding: 10px;
 
+  &:nth-child(4n-7) {
+    margin-left: 0px;
+  }
 
-    &:nth-child(4n-7) {
-      margin-left: 0px;
-    }    
-
-    .asset-thumbnail {
-        // Global asset-thumbnail properties
-        img {
-          border-top-left-radius: $primary--border-radius;
-          border-top-right-radius: $primary--border-radius;
-          margin-left: -10px;
-          margin-top: -10px;
-        }
+  .asset-thumbnail {
+    // Global asset-thumbnail properties
+    img {
+      border-top-left-radius: $primary--border-radius;
+      border-top-right-radius: $primary--border-radius;
+      margin-left: -10px;
+      margin-top: -10px;
     }
+  }
 }
-
 
 .asset-meta-info {
   border-top: 1px solid #f3f3f3;
@@ -154,29 +165,35 @@ ul {
   padding: 8px 10px 0px 10px;
 }
 
-
 .meta-right {
   float: right;
-   .comments {
-      margin-left: 5px;
-   }
+
+  .comments {
+    margin-left: 5px;
+  }
 }
 
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
 
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
 
 .asset-meta-info {
-    img {
-      border-radius: 20px;
-    }
+  img {
+    border-radius: 20px;
+  }
 }
 
-
-
-@media (max-width: $screen-sm-min) { 
+@media (max-width: $screen-sm-min) {
   .navbar-collapse {
-    margin-top:25px;
+    margin-top: 25px;
   }
 }
