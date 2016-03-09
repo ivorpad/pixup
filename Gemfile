@@ -12,7 +12,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
-
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'figaro', '1.0'
 gem 'gist'
@@ -22,6 +21,8 @@ gem 'mini_magick'
 gem 'pundit'
 gem 'rolify', '~> 5.0'
 gem 'font-awesome-rails'
+gem 'carrierwave-video'
+gem 'carrierwave-video-thumbnailer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

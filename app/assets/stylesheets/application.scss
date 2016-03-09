@@ -122,6 +122,7 @@ ul {
       color: white;
 
       &:hover {
+        color: white;
         background: lighten($light-secondary-color, 5%);
       }
     }
