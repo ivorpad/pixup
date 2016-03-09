@@ -12,7 +12,7 @@
 <ul>
   <li>Created by: <%= @asset.user.name %></li>
   <li>Title:  <%= @asset.title %> </li>
-  <li>File type: <%# @asset.content_type.capitalize %></li>
+  <li>File type: <%= @asset.content_type.capitalize %></li>
 
 
 <% if @asset.asset_file.present? %>
@@ -25,8 +25,10 @@
     <li> <%= link_to "Download", @asset.asset_file.url %> </li>
 
   <% elsif @asset.content_type.include?("video") %>
-      <%= @asset.asset_file.url %>
 
+
+    <%= video_tag @asset.asset_file.mp4.url, controls: true %>
+      
    <% else %>
       <%= @asset.asset_file.url %>
   <% end %>

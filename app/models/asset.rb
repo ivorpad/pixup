@@ -4,6 +4,7 @@ class Asset < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :history]
   mount_uploader :asset_file, AssetItemUploader
+
   before_save :update_asset_attributes
 
   # Validations

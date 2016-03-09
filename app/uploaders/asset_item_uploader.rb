@@ -5,6 +5,8 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  include CarrierWave::Video
+  # include CarrierWave::FFMPEG
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -25,7 +27,7 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-
+  
   #
   # def scale(width, height)
   #   # do something
@@ -40,9 +42,25 @@ class AssetItemUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [500, 500]
   end
 
-    version :full, :if => :image? do
+  version :full, :if => :image? do
     process :resize_to_fit => [800, 800]
   end
+
+  version :mp4, :if => :video? do
+     process encode_video: [:mp4]
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.mp4'
+    end
+  end
+
+  # version :webm do
+  #   process encode_video: [:webm]
+  # end
+  
+  # version :flv do
+  #   process encode_video: [:flv]
+  # end
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -56,7 +74,7 @@ class AssetItemUploader < CarrierWave::Uploader::Base
     # elsif category type is docs:
       # %w(pdf docx)
 
-    %w(jpg jpeg gif png pdf mov mp3)
+    %w(jpg jpeg gif png pdf mov flv mp3 mp4 webm)
   end
 
   # Override the filename of the uploaded files:
@@ -65,10 +83,17 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-
   protected
 
   def image?(new_file)
     new_file.content_type.start_with? 'image'
+  end
+
+  def video?(new_file)
+    new_file.content_type.start_with? 'video'
+  end
+
+  def audio?(new_file)
+    new_file.content_type.start_with? 'audio'
   end
 end

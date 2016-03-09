@@ -32,20 +32,20 @@ class ApplicationController < ActionController::Base
     current_user
   end
 
-# TODO: DRY
+# TODO: DRY this method. Upgrade Devise.
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:sign_up) << :company
-    devise_parameter_sanitizer.for(:sign_up) << :avatar
-    devise_parameter_sanitizer.for(:sign_up) << :avatar_cache
+    # devise_parameter_sanitizer.for(:sign_up) << :name
+    # devise_parameter_sanitizer.for(:sign_up) << :company
+    # devise_parameter_sanitizer.for(:sign_up) << :avatar
+    # devise_parameter_sanitizer.for(:sign_up) << :avatar_cache
 
-    devise_parameter_sanitizer.for(:account_update) << :name
-    devise_parameter_sanitizer.for(:account_update) << :company
-    devise_parameter_sanitizer.for(:account_update) << :avatar
-    devise_parameter_sanitizer.for(:account_update) << :avatar_cache
+    devise_parameter_sanitizer.for(:sign_up) do |user_params|
+      user_params.permit(:name, :email, :company, :avatar, :avatar_cache, :password, :password_confirmation)
+    end
 
 
-    # devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password,
-    #   :password_confirmation, :remember_me, :avatar, :avatar_cache) }
+    devise_parameter_sanitizer.for(:account_update) do |user_params|
+      user_params.permit(:name, :email, :company, :avatar, :avatar_cache, :password, :current_password, :password_confirmation)
+    end
   end
 end
