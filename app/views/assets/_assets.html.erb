@@ -3,10 +3,10 @@
     <div class="col-md-3 asset-post">  
       <%= link_to (image_tag asset.asset_file.thumb.url), project_asset_path(@project, asset), class: 'asset-thumbnail' if asset.asset_file.present? %>
       <h4><%= link_to asset.title, project_asset_path(@project, asset) %></h4>
-      <!-- <p> <%# sanitize(truncate(asset.description, length: 100)) %> </p> -->
+      <p> <%= sanitize(truncate(asset.description, length: 100)) %> </p>
 
       <div class="asset-meta-info">
-        <small>
+        <small class="meta-left">
 
           <% if current_user.avatar.url.present? %>
             <%= image_tag(current_user.avatar.mini.url) %> 
@@ -14,10 +14,16 @@
           <%= asset.user.name %>
 
         </small>
-        <div class="likes-<%= asset.id %>">
-          <%= render partial: "assets/likes", locals: { asset: asset } %>
+        
+        <div class="meta-right">
+          <small class="likes-<%= asset.id %>">
+            <%= render partial: "assets/likes", locals: { asset: asset } %>
+          </small>
+
+          <small class="comments"> 
+            <%= fa_icon "comments" %> <%= pluralize asset.comments.count, "Comment" %>           
+          </small>
         </div>
-        <small> <%= pluralize asset.comments.count, "Comment" %></small>
         
       </div>
 
