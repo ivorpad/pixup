@@ -35,7 +35,7 @@
               <%# TODO: If current_user.admin? %>
               <li><%# link_to "Admin", admin_path %></li>
               <li><%= link_to "Admin", admin_root_path if current_user.is_admin? %></li>
-              <li> <%= link_to "Profile Settings", edit_user_registration_path(current_user)  %> </li>
+              <li> <%= link_to "Profile Settings", edit_user_registration_path  %> </li>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 

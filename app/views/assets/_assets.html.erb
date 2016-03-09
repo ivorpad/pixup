@@ -1,12 +1,19 @@
 <div class="asset-posts-container">
   <% @category.assets.each do |asset| %>
     <div class="col-md-3 asset-post">  
-      <%= link_to (image_tag asset.asset_file.thumb.url), project_asset_path(@project, asset), class: 'asset-thumbnail'  %>
+      <%= link_to (image_tag asset.asset_file.thumb.url), project_asset_path(@project, asset), class: 'asset-thumbnail' if asset.asset_file.present? %>
       <h4><%= link_to asset.title, project_asset_path(@project, asset) %></h4>
-      <p> <%= asset.description %> </p>
+      <!-- <p> <%# sanitize(truncate(asset.description, length: 100)) %> </p> -->
 
       <div class="asset-meta-info">
-        <small><%= asset.user.name %></small>
+        <small>
+
+          <% if current_user.avatar.url.present? %>
+            <%= image_tag(current_user.avatar.mini.url) %> 
+          <% end %>
+          <%= asset.user.name %>
+
+        </small>
         <div class="likes-<%= asset.id %>">
           <%= render partial: "assets/likes", locals: { asset: asset } %>
         </div>

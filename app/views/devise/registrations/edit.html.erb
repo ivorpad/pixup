@@ -7,6 +7,16 @@
   <%= devise_error_messages! %>
 
   <div class="form-group">
+    <%= f.label :full_name %><br />
+    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :company %> <br>
+    <%= f.text_field :company, class: 'form-control', placeholder: 'Company', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, class: 'form-control' %>
   </div>

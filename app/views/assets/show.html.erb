@@ -12,7 +12,7 @@
 <ul>
   <li>Created by: <%= @asset.user.name %></li>
   <li>Title:  <%= @asset.title %> </li>
-  <li>File type: <%= @asset.content_type.capitalize %></li>
+  <li>File type: <%# @asset.content_type.capitalize %></li>
 
 
 <% if @asset.asset_file.present? %>
