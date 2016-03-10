@@ -23,10 +23,9 @@ class Asset < ActiveRecord::Base
   scope :image, -> { where(content_type: 'image') }
   scope :video, -> { where(content_type: 'video') }
   scope :audio, -> { where(content_type: 'audio') }
-
-  def self.assets_filtered(params, category)
-    where( "content_type = ? AND category_id = ?", params, category )
-  end
+  scope :filtered_by_type, -> (params, category) { 
+      where( "content_type = ? AND category_id = ?", params, category ) 
+  }
 
   # Public Methods
 
