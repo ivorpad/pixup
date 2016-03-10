@@ -4,7 +4,7 @@ class Assets::FileTypesController < AssetsController
     @category = Category.friendly.find(params[:categories_id])
     @project = Project.friendly.find(params[:project_id])
     @assets_content_type = Asset.pluck(:content_type).uniq
-    @filtered_assets = Asset.assets_filtered(params[:type], @category)
+    @filtered_assets = Asset.filtered_by_type(params[:type], @category)
 
     file_type = params[:type]
     @assets = Asset.none
