@@ -1,5 +1,5 @@
 <%= render partial: "categories/categories_menu" %>
 
 <div class="container">
-  <%= render partial: "assets" %>
+  <%= render partial: "assets", locals: { assets: @filtered_assets } %>
 </div>

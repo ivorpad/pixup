@@ -16,5 +16,4 @@ class Category < ActiveRecord::Base
     no_global = project.categories.where(:global => false)
     global.concat(no_global)
   end
-
 end

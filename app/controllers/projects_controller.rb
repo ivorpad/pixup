@@ -62,6 +62,9 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # TODO: How to move this to a model or a helper (?) 
+  # Skinny controllers
+
   def add_member
     project = Project.friendly.find(params[:project_id])
     respond_to do |format|
