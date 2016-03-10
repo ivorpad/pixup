@@ -3,10 +3,13 @@
 class AssetItemUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
+
+  # include CarrierWave::FFMPEG
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   include CarrierWave::Video
-  # include CarrierWave::FFMPEG
+  # include CarrierWave::Video::Thumbnailer
+  
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -46,12 +49,18 @@ class AssetItemUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [800, 800]
   end
 
+    
   version :mp4, :if => :video? do
-     process encode_video: [:mp4]
+    process encode_video: [:mp4]
+    
     def full_filename(for_file)
       super.chomp(File.extname(super)) + '.mp4'
     end
   end
+
+  # version :video_thumbnail, if: :video? do
+  #   process thumbnail: [{ size: 258, strip: true }]
+  # end
 
   # version :webm do
   #   process encode_video: [:webm]
