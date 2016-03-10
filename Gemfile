@@ -37,11 +37,11 @@ group :development, :test do
   gem 'spring'
 
   # RSpec for BDD/TDD
-  gem 'rspec-rails', '~> 3.3', '>= 3.3.3'
-  gem 'capybara', github: 'jnicklas/capybara', branch: 'master'
-  gem "launchy"
+  # gem 'rspec-rails', '~> 3.3', '>= 3.3.3'
+  # gem 'capybara', github: 'jnicklas/capybara', branch: 'master'
+  # gem "launchy"
   gem 'awesome_print'
-  gem 'factory_girl_rails', '~> 4.0'
+  # gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
 
@@ -49,7 +49,12 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'faker', '~> 1.5.0'
 
-  gem 'annotate', '~> 2.6', '>= 2.6.10'
+  # gem 'annotate', '~> 2.6', '>= 2.6.10'
+  
+  gem "guard", ">= 2.2.2", :require => false
+  gem "guard-livereload",  :require => false
+  gem "rack-livereload"
+  gem "rb-fsevent",        :require => false
 end
 
 group :production do
