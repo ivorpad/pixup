@@ -8,7 +8,7 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   include CarrierWave::Video
-  # include CarrierWave::Video::Thumbnailer
+  include CarrierWave::Video::Thumbnailer
   
 
   # Choose what kind of storage to use for this uploader:
@@ -52,15 +52,22 @@ class AssetItemUploader < CarrierWave::Uploader::Base
     
   version :mp4, :if => :video? do
     process encode_video: [:mp4]
-    
+
     def full_filename(for_file)
       super.chomp(File.extname(super)) + '.mp4'
     end
   end
 
-  # version :video_thumbnail, if: :video? do
-  #   process thumbnail: [{ size: 258, strip: true }]
-  # end
+  version :video_thumbnail do
+    process thumbnail: [{format: 'png', size: 258 }]
+    def full_filename for_file
+      png_name for_file, version_name
+    end
+  end
+
+  def png_name for_file, version_name
+    %Q{#{version_name}_#{for_file.chomp(File.extname(for_file))}.png}
+  end
 
   # version :webm do
   #   process encode_video: [:webm]
