@@ -50,13 +50,21 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   end
 
     
-  version :mp4, :if => :video? do
-    process encode_video: [:mp4]
+  # version :mp4, :if => :video? do
+  #   process encode_video: [:mp4, audio_codec: "aac", :custom => "-strict experimental -q:v 5 -preset slow -g 30"]
+  #   def full_filename(for_file)
+  #     super.chomp(File.extname(super)) + '.mp4'
+  #   end
+  # end
 
-    def full_filename(for_file)
-      super.chomp(File.extname(super)) + '.mp4'
-    end
-  end
+  # Removed temporarily as webm transcoding is too slow.
+  # 
+  # version :webm, :if => :video? do
+  #   process :encode_video => [:webm, audio_codec: "aac", :custom => "-strict experimental -q:v 5 -preset slow -g 30"]
+  #   def full_filename(for_file)
+  #     "#{File.basename(for_file, File.extname(for_file))}.webm"
+  #   end
+  # end
 
   version :video_thumbnail do
     process thumbnail: [{format: 'png', size: 258 }]
@@ -68,6 +76,8 @@ class AssetItemUploader < CarrierWave::Uploader::Base
   def png_name for_file, version_name
     %Q{#{version_name}_#{for_file.chomp(File.extname(for_file))}.png}
   end
+
+
 
   # version :webm do
   #   process encode_video: [:webm]
@@ -90,7 +100,7 @@ class AssetItemUploader < CarrierWave::Uploader::Base
     # elsif category type is docs:
       # %w(pdf docx)
 
-    %w(jpg jpeg gif png pdf mov flv mp3 mp4 webm)
+    %w(jpg jpeg gif png pdf mov mp3 mp4 webm avi)
   end
 
   # Override the filename of the uploaded files:

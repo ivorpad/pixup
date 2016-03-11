@@ -1,53 +1,41 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2><%= @asset.title %></h2>
-<%= link_to "Delete", project_asset_path, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
-<%= link_to "Edit", edit_project_asset_path, class: "btn btn-primary" %>
-
-<div class="likes-<%= @asset.id %>">
-    <%= render partial: "likes", locals: { asset: @asset } %>
-</div>
-
-<ul>
-  <li>Created by: <%= @asset.user.name %></li>
-  <li>Title:  <%= @asset.title %> </li>
-  <li>File type: <%= @asset.content_type.capitalize %></li>
-
-
-<% if @asset.asset_file.present? %>
-  <% if @asset.content_type.include?("image") %>
-
-    <%= link_to (image_tag @asset.asset_file.preview.url), @asset.asset_file.full.url %>
-
-  <% elsif @asset.content_type.include?("application")  %>
-    <iframe src=<%= @asset.asset_file.url %> width="600" height="780" style="border: none;"> </iframe>
-    <li> <%= link_to "Download", @asset.asset_file.url %> </li>
-
-  <% elsif @asset.content_type.include?("video") %>
-
-
-    <%= video_tag @asset.asset_file.mp4.url, controls: true %>
-      
-   <% else %>
-      <%= @asset.asset_file.url %>
-  <% end %>
-<% end %>
-
-
-</ul>
-
-<!-- <h4>Size</h4> -->
-<!-- <p> <%# number_to_human_size(@asset.asset_file.file.size) %> </p> -->
-
-
-  <h3>Description</h3>
-  <p><%= @asset.description %></p>
-
-  <%= render partial: "comments/comments", locals: {commentable: @asset} %>
-  <%= render partial: "comments/form", locals: {commentable: @asset} %>
-
-
+    <div class="col-md-8">
+      <div class="asset-single-container">
+        <% if @asset.asset_file.present? %>
+          <% if @asset.content_type.include?("image") %>
+            <%= link_to (image_tag @asset.asset_file.preview.url), @asset.asset_file.full.url %>
+          <% elsif @asset.content_type.include?("application")  %>
+            <iframe src=<%= @asset.asset_file.url %> width="600" height="780" style="border: none;"> </iframe>
+            <li> <%= link_to "Download", @asset.asset_file.url %> </li>
+          <% elsif @asset.content_type.include?("video") %>
+            <%= video_tag @asset.asset_file.url, controls: true, width: 700 %>
+          <% else %>
+            <%= @asset.asset_file.url %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="asset-single-sidebar">
+        <h2><%= @asset.title %></h2>
+        <%= link_to "Delete", project_asset_path, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+        <%= link_to "Edit", edit_project_asset_path, class: "btn btn-primary" %>
+        <div class="likes-<%= @asset.id %>" id="likes">
+          <%= render partial: "likes", locals: { asset: @asset } %>
+        </div>
+        <ul>
+          <li>Created by: <%= @asset.user.name %></li>
+          <li>Title:  <%= @asset.title %> </li>
+          <li>Category:  <%= @asset.category.name %> </li>
+          <li>File type: <%= @asset.content_type.capitalize %></li>
+          <li>Size: <%= number_to_human_size(@asset.asset_file.file.size) %></li>
+        </ul>
+        <h3>Description</h3>
+        <p><%= @asset.description %></p>
+        <%= render partial: "comments/comments", locals: {commentable: @asset} %>
+        <%= render partial: "comments/form", locals: {commentable: @asset} %>
+      </div>
     </div>
   </div>
 </div>

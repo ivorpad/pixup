@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.save!
 
-    redirect_to [@project, @commentable], notice: "Comment created..."
+    redirect_to [@project, @commentable]
   end
 
   def comment_params

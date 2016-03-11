@@ -16,4 +16,8 @@ class Category < ActiveRecord::Base
     no_global = project.categories.where(:global => false)
     global.concat(no_global)
   end
+
+  def should_generate_new_friendly_id?
+   name_changed?
+  end
 end

@@ -134,6 +134,17 @@ ul {
   margin-top: 30px;
 }
 
+.asset-single-container {
+  margin-top: 30px;
+}
+
+.asset-single-sidebar {
+      #likes {
+      padding: 3px 5px;
+      display: inline-block;
+    }
+}
+
 .asset-post {
   /* Mask: */
   background: white;
@@ -157,6 +168,12 @@ ul {
       margin-left: -10px;
       margin-top: -10px;
     }
+  }
+
+  h4 {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: 300;
   }
 }
 
