@@ -16,7 +16,7 @@
 		</div>
 
 		<% if @asset.asset_file? %>
-			<%= image_tag @asset.asset_file.url %>
+			<%= image_tag @asset.asset_file.thumb.url %>
 			<div class="form-group">
 				<%= f.label :remove_asset %>
 				<%= f.check_box :remove_asset_file%>

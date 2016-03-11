@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     project.collaborators.exists?(self.id)
   end
 
+  def current_projects
+    Project.joins(:users).where("projects.user_id = ?", self.id)
+  end
+
   private
 
   def password_required?

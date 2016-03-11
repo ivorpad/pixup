@@ -28,12 +28,26 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Journal</a></li>
           <% if user_signed_in? %>
-          <li><%= link_to "Projects", projects_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Projects <span class="caret"></span> </a>
+
+              <ul class="dropdown-menu">
+                    
+                <% current_user.current_projects.each do |project| %>
+                <li> <%= link_to project.title, project_path(project.slug)  %> </li>
+                <% end %>
+
+                <li role="separator" class="divider"></li>
+
+                <li><%= link_to "All Projects", projects_path %></li>
+      
+              </ul>
+        
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.name %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <%# TODO: If current_user.admin? %>
-              <li><%# link_to "Admin", admin_path %></li>
               <li><%= link_to "Admin", admin_root_path if current_user.is_admin? %></li>
               <li> <%= link_to "Profile Settings", edit_user_registration_path  %> </li>
               <li role="separator" class="divider"></li>
