@@ -8,7 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <nav class="navbar navbar-default navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,8 +32,8 @@
 
               <ul class="dropdown-menu">
                     
-                <% current_user.current_projects.each do |project| %>
-                <li> <%= link_to project.title, project_path(project.slug)  %> </li>
+                <% Project.current_projects(current_user).find_each do |project| %>
+                    <li><%= link_to project.title, project_path(project.slug)  %></li> 
                 <% end %>
 
                 <li role="separator" class="divider"></li>
@@ -63,8 +62,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
-
-
 
 <% flash.each do |name, msg| %>
   <div class="alert alert-<%= name %>">

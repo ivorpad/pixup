@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = policy_scope(Project)
-    authorize @projects
+    @user = current_user
+    @projects = @user.projects
   end
 
   def show
@@ -20,8 +20,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.create(project_params)
-    @project.user_id = current_user.id
+    @user = current_user
+    @project = @user.projects.create(project_params.merge(user_id: @user.id))
 
     authorize @project
     if @project.save
