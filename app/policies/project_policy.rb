@@ -4,7 +4,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? || record.is_public? || user.collaborator_of?(record) || record.user == user
+    record.is_public? || user.collaborator_of?(record) || record.user == user
   end
 
   def edit?
