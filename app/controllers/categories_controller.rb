@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
       @project.user_id = current_user.id
 
       flash[:notice] = "The category has been created"
-      redirect_to project_path(@project.id)
+      redirect_to project_path(@project)
     else
       flash[:error] = "Could not be created, please try again."
       render 'new'
