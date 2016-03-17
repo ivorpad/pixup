@@ -1,6 +1,6 @@
 class ProjectPolicy < ApplicationPolicy
   def index?
-    user.present?
+    record.user == user
   end
 
   def show?

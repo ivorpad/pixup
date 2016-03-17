@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308133447) do
+ActiveRecord::Schema.define(version: 20160317032016) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20160308133447) do
     t.datetime "updated_at",                 null: false
     t.string   "slug"
     t.boolean  "global",     default: false
+    t.integer  "user_id"
+    t.integer  "project_id"
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true
