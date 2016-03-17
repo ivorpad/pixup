@@ -8,6 +8,7 @@ class AssetsController < ApplicationController
   def show
     @project = Project.friendly.find(params[:project_id])
     @asset = @project.assets.friendly.find(params[:id])
+    authorize @asset
   end
 
   def new

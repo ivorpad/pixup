@@ -8,14 +8,9 @@ class Category < ActiveRecord::Base
   has_many :projects, through: :categorizations
 
   has_many :assets
+  has_many :users
 
   scope :global, -> { where( global: true ) }
-
-  def self.categories_for(project)
-    global = Category.where(:global => true)
-    no_global = project.categories.where(:global => false)
-    global.concat(no_global)
-  end
 
   def should_generate_new_friendly_id?
    name_changed?

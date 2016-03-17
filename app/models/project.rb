@@ -27,11 +27,11 @@ class Project < ActiveRecord::Base
   scope :public_projects, -> { where("status = ?", Project.statuses[:is_public]) }
 
   # Returns global and non-global categories
-  def visible_categories
-    global = Category.where(global: true)
-    no_global = categories.where(global: false)
-    global.concat(no_global).uniq.sort
-  end
+  # def visible_categories
+  #   global = Category.where(global: true)
+  #   no_global = categories.where(global: false)
+  #   global.concat(no_global).uniq.sort
+  # end
 
   def collaborators
     users.where.not(name: user.name)

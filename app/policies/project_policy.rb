@@ -29,7 +29,7 @@ class ProjectPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-     scope.joins(:collaborations).where('collaborations.user_id = ?', user)
+     scope
     end
   end
 end

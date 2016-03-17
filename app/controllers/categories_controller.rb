@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     @project = Project.friendly.find(params[:project_id])
     @category = Category.friendly.find(params[:id])
     @assets_content_type = Asset.pluck(:content_type).uniq
+
   end
 
   def new
@@ -22,7 +23,6 @@ class CategoriesController < ApplicationController
 
     if @category.save
       @category = @project.categorizations.create(category: @category)
-      @project.user_id = current_user.id
 
       flash[:notice] = "The category has been created"
       redirect_to project_path(@project)
