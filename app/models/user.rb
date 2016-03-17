@@ -13,7 +13,10 @@ class User < ActiveRecord::Base
 
   # Associations
   has_many :collaborations
-  has_many :projects, through: :collaborations
+  has_many :project_collaborations, through: :collaborations, source: :project
+  has_many :created_projects, :class_name => "Project"
+
+  has_many :projects
 
   has_many :assets, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -27,7 +30,10 @@ class User < ActiveRecord::Base
     project.collaborators.exists?(self.id)
   end
 
- 
+
+  def all_projects
+    created_projects + project_collaborations
+  end
 
   private
 

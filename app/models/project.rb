@@ -24,24 +24,7 @@ class Project < ActiveRecord::Base
 
   has_many :posts
 
-  scope :current_projects, -> (user) { 
-    joins(:users).where(
-      'projects.user_id = ? or collaborations.user_id = ?', user.id, user.id
-    ) 
-  }
-
-  # scope :projects_created, -> { where( 'projects.user_id = ?', user.id ) }
-
   scope :public_projects, -> { where("status = ?", Project.statuses[:is_public]) }
-
-
-  def self.shitty_method(user)
-    i = includes(:users).where('projects.user_id = ?', user)
-    j = joins(:collaborations).where('collaborations.user_id = ?', user)
-
-    i.concat(j)
-  end
-
 
   # Returns global and non-global categories
   def visible_categories

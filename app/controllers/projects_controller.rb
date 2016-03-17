@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @user = current_user
-    @projects = @user.projects
+    @projects = @user.all_projects
   end
 
   def show
@@ -21,7 +23,7 @@ class ProjectsController < ApplicationController
 
   def create
     @user = current_user
-    @project = @user.projects.create(project_params.merge(user_id: @user.id))
+    @project = @user.created_projects.create(project_params)
 
     authorize @project
     if @project.save
@@ -61,9 +63,6 @@ class ProjectsController < ApplicationController
       render @project
     end
   end
-
-  # TODO: How to move this to a model or a helper (?) 
-  # Skinny controllers
 
   def add_member
     project = Project.friendly.find(params[:project_id])
