@@ -27,9 +27,8 @@ class User < ActiveRecord::Base
   end
 
   def collaborator_of?(project)
-    project.collaborators.exists?(self.id)
+    all_projects.include?(project)
   end
-
 
   def all_projects
     created_projects + project_collaborations

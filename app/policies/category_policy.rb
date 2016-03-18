@@ -1,7 +1,7 @@
 class CategoryPolicy < ApplicationPolicy
 
   def show?
-    record.user == user
+    record.user == user 
   end
 
   class Scope < Scope
