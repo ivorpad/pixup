@@ -83,7 +83,7 @@ class ProjectsController < ApplicationController
       end
 
       flash[:notice] = "Member added."
-      redirect_to @project
+      redirect_to project_path(@project.friendly_id)
     else
       flash[:danger] = "Member couldn't be added"
       render 'show'
