@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.save!
 
-    redirect_to [@project, @commentable]
+    redirect_to project_category_post_path(@project, @category, @post)
   end
 
   def comment_params

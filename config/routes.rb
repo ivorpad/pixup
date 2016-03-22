@@ -12,14 +12,15 @@ Rails.application.routes.draw do
 
   resources :projects, except: [:show, :index] do
 
+    resources :categories, only: :edit
+
+    resources :categories do
+
     resources :posts do
       resources :comments, module: :posts
     end
 
-    resources :categories, only: :edit
-
-    resources :categories do
-        resources :assets
+    resources :assets
     end
 
     resources :assets, except: [:show] do

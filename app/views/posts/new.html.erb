@@ -1,9 +1,12 @@
 <div class="container">
   <div class="row">
 <div class="col-md-6 col-md-offset-3">
+
+<%= params %>
+
   <h1>Add New Post</h1>
 
-  <%= form_for ([:project, @post]) do |f| %>
+  <%= form_for ([:project, :category, @post]) do |f| %>
   <%= render "shared/errors", object: @post %>
 
   <div class="form-group">
