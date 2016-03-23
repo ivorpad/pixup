@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @project = Project.friendly.find(params[:project_id])
     @category = Category.friendly.find(params[:category_id])
+    @assets_content_type = Asset.pluck(:content_type).uniq
   end
 
   def show
