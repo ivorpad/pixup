@@ -24,6 +24,7 @@ gem 'font-awesome-rails'
 gem 'carrierwave-video'
 gem 'carrierwave-video-thumbnailer'
 gem 'streamio-ffmpeg'
+gem 'fog', '~> 1.37'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -37,11 +38,7 @@ group :development, :test do
   gem 'spring'
 
   # RSpec for BDD/TDD
-  # gem 'rspec-rails', '~> 3.3', '>= 3.3.3'
-  # gem 'capybara', github: 'jnicklas/capybara', branch: 'master'
-  # gem "launchy"
   gem 'awesome_print'
-  # gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
   gem 'hirb', '~> 0.7.3'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
