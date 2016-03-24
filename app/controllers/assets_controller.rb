@@ -7,6 +7,7 @@ class AssetsController < ApplicationController
 
   def show
     @project = Project.friendly.find(params[:project_id])
+    @category = Category.friendly.find(params[:category_id])
     @asset = @project.assets.friendly.find(params[:id])
     authorize @asset
   end

@@ -12,21 +12,26 @@ Rails.application.routes.draw do
 
   resources :projects, except: [:show, :index] do
 
-    resources :categories, only: :edit
+  resources :categories, only: :edit
 
     resources :categories do
+      resources :posts do
+        resources :comments, module: :posts
+      end
 
-    resources :posts do
-      resources :comments, module: :posts
-    end
-
-    resources :assets
-    end
-
-    resources :assets, except: [:show] do
+      resources :assets do 
         resources :comments, module: :assets
         resource :like, module: :assets
+      end
+
     end
+
+    # TODO Fix this so I can take the category_id param.
+
+    # resources :assets, except: [:show] do
+    #     resources :comments, module: :assets
+    #     resource :like, module: :assets
+    # end
 
   end
 

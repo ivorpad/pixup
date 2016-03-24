@@ -26,6 +26,14 @@ $primary--border-radius: 5px;
 $primary--link-color: #212121;
 $primary--paragraph-color: #727272;
 
+@mixin font-decoration {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-shadow: 0px 1px 1px rgba(0, 30, 50, 0.1);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 body {
   background: #F5F7F9;
   font-family: Helvetica Neue, sans-serif;
@@ -76,9 +84,40 @@ p {
 ul {
   &.nav {
     &.navbar-nav {
-      &.main-navigation {
-        margin-top: 20px;
+      &#main-navigation {
+        margin-top: 32px;
       }
+    }
+  }
+}
+
+
+#main-navigation {
+
+  > .open > a:focus {
+    background: #ececec;
+    color: grey !important;
+  }
+
+  .dropdown-menu {
+    background: #ececec;
+    border-radius: 0;
+    border: none;
+     a {
+      color: #888;
+      font-weight: 400;
+      text-shadow: none;
+     }
+  }
+
+  li {
+    a {
+      color: #cecece;
+      @include font-decoration;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border-top-left-radius: $primary--border-radius;
+      border-top-right-radius: $primary--border-radius;
     }
   }
 }
@@ -96,10 +135,7 @@ ul {
     li {
       a {
         color: $light-primary-color;
-        font-size: 12px;
-        letter-spacing: 0.5px;
-        text-shadow: 0px 1px 1px rgba(0, 30, 50, 0.1);
-        font-weight: bold;
+        @include font-decoration;
         text-transform: uppercase;
         padding: 0;
         margin: 15px 30px 10px;

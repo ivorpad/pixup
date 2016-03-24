@@ -1,9 +1,9 @@
 <% if user_signed_in? && current_user.likes?(asset) %>
 
-<%= link_to (fa_icon "heart"), project_asset_like_path(@project, asset), method: :delete, remote: true %>
+<%= link_to (fa_icon "heart"), project_category_asset_like_path(@project, @category, asset), method: :delete, remote: true %>
 
 <% else %>
-<%= link_to (fa_icon "heart-o"), project_asset_like_path(@project, asset), method: :post, remote: true %>
+<%= link_to (fa_icon "heart-o"), project_category_asset_like_path(@project, @category, asset), method: :post, remote: true %>
 <% end %>
 
 <%= asset.likes.count %>

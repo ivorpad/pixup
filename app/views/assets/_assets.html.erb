@@ -1,9 +1,9 @@
 <div class="asset-posts-container">
   <% assets.each do |asset| %>
     <div class="col-md-3 asset-post">
-      <%= link_to (image_tag asset.asset_file.thumb.url), project_asset_path(@project, asset), class: 'asset-thumbnail' if asset.content_type.include?("image") %>
-      <%= link_to (image_tag asset.asset_file.video_thumbnail.url), project_asset_path(@project, asset), class: 'asset-thumbnail' if asset.content_type.include?("video") %>
-      <h4><%= link_to asset.title, project_asset_path(@project, asset) %></h4>
+      <%= link_to (image_tag asset.asset_file.thumb.url), project_category_asset_path(@project, @category, asset), class: 'asset-thumbnail' if asset.content_type.include?("image") %>
+      <%= link_to (image_tag asset.asset_file.video_thumbnail.url), project_category_asset_path(@project, @category, asset), class: 'asset-thumbnail' if asset.content_type.include?("video") %>
+      <h4><%= link_to asset.title, project_category_asset_path(@project, @category, asset) %></h4>
        <%# sanitize(truncate(asset.description, length: 100)) %>
       <div class="asset-meta-info">
         <small class="meta-left">

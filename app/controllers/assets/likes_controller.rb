@@ -1,6 +1,6 @@
 class Assets::LikesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project, :find_asset
+  before_action :find_project, :find_asset, :find_category
 
   def create
     @asset.likes.where(user_id: current_user.id).first_or_create
@@ -29,5 +29,9 @@ class Assets::LikesController < ApplicationController
 
   def find_asset
     @asset = Asset.friendly.find(params[:asset_id])
+  end
+
+  def find_category
+    @category = Category.friendly.find(params[:category_id])
   end
 end
