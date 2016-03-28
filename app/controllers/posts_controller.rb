@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 
     if @post.update_attributes(post_params)
       flash[:notice] = "Successfully updated..."
-      redirect_to [@project, @post]
+      redirect_to [@project, @category, @post]
     else
       render 'edit'
     end

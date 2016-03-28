@@ -5,14 +5,11 @@ CarrierWave.configure do |config|
     # if using Passenger, set an Apache environment variable.
     #
     # In Heroku, follow http://devcenter.heroku.com/articles/config-vars
-    #
-    # $ heroku config:add S3_KEY=your_s3_access_key S3_SECRET=your_s3_secret S3_REGION=eu-west-1 S3_ASSET_URL=http://assets.example.com/ S3_BUCKET_NAME=s3_bucket/folder
  
     # Configuration for Amazon S3
     :provider              => 'AWS',
-    :aws_access_key_id     => ENV['AWS_ACCESS_KEY_ID'],
-    :aws_secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
-    # :region                => ENV['S3_REGION']
+    :aws_access_key_id     => ENV["AWS_ACCESS_KEY_ID"],
+    :aws_secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"],
   }
  
   if Rails.env.development?
@@ -25,7 +22,6 @@ CarrierWave.configure do |config|
  
   config.cache_dir = "#{Rails.root}/tmp/uploads"                  # To let CarrierWave work on heroku
  
-  config.fog_directory    = ENV['AWS_BUCKET']
+  config.fog_directory    = ENV["AWS_BUCKET"]
   config.fog_public     = true
-
 end
