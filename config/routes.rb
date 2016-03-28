@@ -23,16 +23,7 @@ Rails.application.routes.draw do
         resources :comments, module: :assets
         resource :like, module: :assets
       end
-
     end
-
-    # TODO Fix this so I can take the category_id param.
-
-    # resources :assets, except: [:show] do
-    #     resources :comments, module: :assets
-    #     resource :like, module: :assets
-    # end
-
   end
 
   match "projects/:project_id/categories/:categories_id/:type" => "assets/file_types#show", 

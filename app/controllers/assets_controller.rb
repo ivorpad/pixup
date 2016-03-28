@@ -57,10 +57,12 @@ class AssetsController < ApplicationController
 
   def destroy
     @asset = Asset.friendly.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
+    @category = Category.friendly.find(params[:category_id])
 
     if @asset.destroy
       flash[:notice] = "\"#{@asset.title}\" was deleted successfully."
-      redirect_to project_assets_path
+      redirect_to project_category_path(@project, @category)
     else
       flash[:error] = 'There was an error deleting the asset.'
       render :show
